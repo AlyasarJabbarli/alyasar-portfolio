@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import CustomCursor from "@/components/ui/CustomCursor";
+import MagneticDock from "@/components/ui/MagneticDock";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,10 +27,11 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-obsidian text-snow`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[var(--color-obsidian)] text-[var(--color-snow)]`}
       >
         <CustomCursor />
         {children}
+        <MagneticDock />
       </body>
     </html>
   );
