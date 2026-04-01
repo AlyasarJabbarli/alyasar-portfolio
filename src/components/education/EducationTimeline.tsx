@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { GraduationCap, Award, Code } from "lucide-react";
+import MaskedText from "../ui/MaskedText";
 
 export interface EducationItem {
   _id: string;
@@ -24,9 +25,11 @@ export default function EducationTimeline({ items }: { items: EducationItem[] })
   return (
     <section id="education" className="py-24 px-4 max-w-4xl mx-auto w-full relative z-10">
       <div className="mb-16 text-center">
-        <h2 className="text-4xl font-bold tracking-tight text-[var(--color-snow)] mb-4">
-          Academic <span className="text-[var(--color-electric-cyan)]">Rigor</span>
-        </h2>
+        <MaskedText
+          text="Academic Rigor"
+          highlightLastWord={true} // Restores the white/cyan split
+          className="text-4xl md:text-5xl font-bold tracking-tight justify-center text-[var(--color-snow)] mb-4"
+        />
         <p className="text-gray-400 font-light">
           Formal education, specialized training, and recognized honors.
         </p>
@@ -42,8 +45,8 @@ export default function EducationTimeline({ items }: { items: EducationItem[] })
 
             return (
               <div key={item._id} className={`relative flex flex-col md:flex-row items-start md:items-center gap-8 ${isEven ? 'md:flex-row-reverse' : ''}`}>
-                
-                <motion.div 
+
+                <motion.div
                   initial={{ scale: 0, opacity: 0 }}
                   whileInView={{ scale: 1, opacity: 1 }}
                   viewport={{ once: true, margin: "-100px" }}
@@ -53,7 +56,7 @@ export default function EducationTimeline({ items }: { items: EducationItem[] })
                   <Icon className="w-5 h-5 text-[var(--color-electric-cyan)]" />
                 </motion.div>
 
-                <motion.div 
+                <motion.div
                   initial={{ opacity: 0, x: isEven ? 50 : -50 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
