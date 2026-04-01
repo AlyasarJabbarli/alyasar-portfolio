@@ -1,43 +1,36 @@
-import { client } from "@/sanity/lib/client"; // Verify this path matches your generated Sanity client
+import { client } from "@/sanity/lib/client"; 
 import NeuralHero from "@/components/hero/NeuralHero";
 import ExperienceGrid, { Experience } from "@/components/bento/ExperienceGrid";
-import ProjectsLab from "@/components/projects/ProjectsLab";
-import EducationTimeline from "@/components/education/EducationTimeline";
+import ProjectsLab, { Project } from "@/components/projects/ProjectsLab";
+import EducationTimeline, { EducationItem } from "@/components/education/EducationTimeline";
 import ContactSection from "@/components/contact/ContactSection";
 
-// The GROQ Query: Fetch all 'experience' documents, sorted by our custom 'order' field
-const EXPERIENCE_QUERY = `*[_type == "experience"] | order(order asc) {
-  _id,
-  company,
-  role,
-  date,
-  highlights,
-  colSpan,
-  rowSpan
-}`;
+const EXPERIENCE_QUERY = `*[_type == "experience"] | order(order asc) { _id, company, role, date, highlights, colSpan, rowSpan }`;
+const PROJECTS_QUERY = `*[_type == "project"] | order(order asc) { _id, title, description, tech, link, github }`;
+const EDUCATION_QUERY = `*[_type == "education"] | order(order asc) { _id, title, institution, location, date, highlight, iconName }`;
 
 export default async function Home() {
-  // Fetch the data on the server before the page ever reaches the client
-  const experiences = await client.fetch<Experience[]>(EXPERIENCE_QUERY, {}, {
-    // Next.js 16 caching: Revalidate this data every hour, or whenever you trigger a webhook
-    next: { revalidate: 3600 } 
-  });
+  // Fetch everything in parallel for maximum speed
+  const [experiences, projects, educationItems] = await Promise.all([
+    client.fetch<Experience[]>(EXPERIENCE_QUERY, {}, { next: { revalidate: 3600 } }),
+    client.fetch<Project[]>(PROJECTS_QUERY, {}, { next: { revalidate: 3600 } }),
+    client.fetch<EducationItem[]>(EDUCATION_QUERY, {}, { next: { revalidate: 3600 } })
+  ]);
 
   return (
     <main className="relative w-full flex flex-col items-center justify-center">
       <NeuralHero />
       
       <div id="experience" className="w-full relative z-10 bg-[var(--color-obsidian)]">
-        {/* Pass the dynamic Sanity data directly into the client component */}
         <ExperienceGrid experiences={experiences} />
       </div>
       
       <div className="w-full relative z-10 bg-[var(--color-obsidian)] border-t border-[var(--color-snow)]/5">
-        <ProjectsLab />
+        <ProjectsLab projects={projects} />
       </div>
 
       <div id="education" className="w-full relative z-10 bg-[var(--color-obsidian)] border-t border-[var(--color-snow)]/5">
-        <EducationTimeline />
+        <EducationTimeline items={educationItems} />
       </div>
       
       <div className="w-full relative z-10 bg-[var(--color-obsidian)] border-t border-[var(--color-snow)]/5">
