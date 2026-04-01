@@ -7,8 +7,10 @@ import * as random from "maath/random/dist/maath-random.esm";
 
 function ParticleField(props: any) {
   const ref = useRef<any>();
-  // Generate 5000 random coordinates in a sphere shape
-  const [sphere] = useState(() => random.inSphere(new Float32Array(5000), { radius: 1.5 }));
+  
+  // FIX: 4500 is perfectly divisible by 3 (X, Y, Z for exactly 1500 particles).
+  // This prevents the incomplete vertex array that causes the NaN crash.
+  const [sphere] = useState(() => random.inSphere(new Float32Array(4500), { radius: 1.5 }));
 
   useFrame((state, delta) => {
     // Slowly rotate the entire data network
