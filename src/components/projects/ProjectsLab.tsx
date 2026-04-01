@@ -24,14 +24,14 @@ export default function ProjectsLab({ projects }: { projects: Project[] }) {
     <section id="projects" className="py-24 px-4 max-w-6xl mx-auto w-full relative z-10">
       <div className="mb-16 flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
-            <MaskedText
-              text="The Lab"
-              className="text-4xl md:text-5xl font-bold tracking-tight text-[var(--color-snow)] mb-4"
-            />
-            export
-            <p className="text-gray-400 font-light max-w-xl">
-              Where frontend architecture meets data science. A selection of technical experiments and scalable applications.
-            </p>
+          <MaskedText
+            text="The Lab"
+            highlightLastWord={true} // Restores the white/cyan split
+            className="text-4xl md:text-5xl font-bold tracking-tight text-[var(--color-snow)] mb-4"
+          />
+          <p className="text-gray-400 font-light max-w-xl">
+            Where frontend architecture meets data science...
+          </p>
         </div>
       </div>
 
