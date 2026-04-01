@@ -2,8 +2,9 @@
 
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import MaskedText from "../ui/MaskedText";
 
-export interface Project {
+interface Project {
   _id: string;
   title: string;
   description: string;
@@ -23,12 +24,14 @@ export default function ProjectsLab({ projects }: { projects: Project[] }) {
     <section id="projects" className="py-24 px-4 max-w-6xl mx-auto w-full relative z-10">
       <div className="mb-16 flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
-          <h2 className="text-4xl font-bold tracking-tight text-[var(--color-snow)] mb-4">
-            The <span className="text-[var(--color-electric-cyan)]">Lab</span>
-          </h2>
-          <p className="text-gray-400 font-light max-w-xl">
-            Where frontend architecture meets data science. A selection of technical experiments and scalable applications.
-          </p>
+            <MaskedText
+              text="The Lab"
+              className="text-4xl md:text-5xl font-bold tracking-tight text-[var(--color-snow)] mb-4"
+            />
+            export
+            <p className="text-gray-400 font-light max-w-xl">
+              Where frontend architecture meets data science. A selection of technical experiments and scalable applications.
+            </p>
         </div>
       </div>
 
@@ -64,7 +67,7 @@ export default function ProjectsLab({ projects }: { projects: Project[] }) {
                   ))}
                 </div>
               )}
-              
+
               <div className="flex items-center gap-4 pt-4 border-t border-[var(--color-snow)]/10">
                 {project.github && (
                   <a href={project.github} className="text-gray-400 hover:text-[var(--color-snow)] transition-colors" data-interactive="true">
