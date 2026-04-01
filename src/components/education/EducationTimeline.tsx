@@ -3,40 +3,24 @@
 import { motion } from "framer-motion";
 import { GraduationCap, Award, Code } from "lucide-react";
 
-const educationData = [
-  {
-    id: 1,
-    type: "degree",
-    title: "Master of Data Science",
-    institution: "Eötvös Loránd University",
-    location: "Budapest, Hungary",
-    date: "Sep 2024 - Jul 2027",
-    icon: GraduationCap,
-    highlight: "Stipendium Hungaricum Scholar (2024) - Awarded state-funded full tuition scholarship.",
-  },
-  {
-    id: 2,
-    type: "degree",
-    title: "Bachelor of Computer Engineering",
-    institution: "Azerbaijan State Oil and Industry University",
-    location: "Baku, Azerbaijan",
-    date: "Sep 2020 - Jul 2024",
-    icon: GraduationCap,
-    highlight: "SABAH Groups Scholar (2021) - Selected by the Ministry of Science and Education.",
-  },
-  {
-    id: 3,
-    type: "certification",
-    title: "Course of Software Engineering",
-    institution: "Code Academy",
-    location: "Baku, Azerbaijan",
-    date: "Jan 2022 - Sep 2022",
-    icon: Code,
-    highlight: "\"Realize Your Idea\" Grant Recipient (2022, 2023) - Youth Fund award for impactful projects.",
-  }
-];
+export interface EducationItem {
+  _id: string;
+  title: string;
+  institution: string;
+  location: string;
+  date: string;
+  highlight: string;
+  iconName: string;
+}
 
-export default function EducationTimeline() {
+// Map the string from Sanity to the actual Lucide component
+const iconMap: Record<string, any> = {
+  GraduationCap: GraduationCap,
+  Award: Award,
+  Code: Code,
+};
+
+export default function EducationTimeline({ items }: { items: EducationItem[] }) {
   return (
     <section id="education" className="py-24 px-4 max-w-4xl mx-auto w-full relative z-10">
       <div className="mb-16 text-center">
@@ -49,18 +33,16 @@ export default function EducationTimeline() {
       </div>
 
       <div className="relative">
-        {/* The central timeline line */}
         <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-px bg-[var(--color-snow)]/10 -translate-x-1/2" />
 
         <div className="space-y-12">
-          {educationData.map((item, index) => {
+          {items.map((item, index) => {
             const isEven = index % 2 === 0;
-            const Icon = item.icon;
+            const Icon = iconMap[item.iconName] || GraduationCap; // Default fallback
 
             return (
-              <div key={item.id} className={`relative flex flex-col md:flex-row items-start md:items-center gap-8 ${isEven ? 'md:flex-row-reverse' : ''}`}>
+              <div key={item._id} className={`relative flex flex-col md:flex-row items-start md:items-center gap-8 ${isEven ? 'md:flex-row-reverse' : ''}`}>
                 
-                {/* Timeline Node */}
                 <motion.div 
                   initial={{ scale: 0, opacity: 0 }}
                   whileInView={{ scale: 1, opacity: 1 }}
@@ -71,7 +53,6 @@ export default function EducationTimeline() {
                   <Icon className="w-5 h-5 text-[var(--color-electric-cyan)]" />
                 </motion.div>
 
-                {/* Content Card */}
                 <motion.div 
                   initial={{ opacity: 0, x: isEven ? 50 : -50 }}
                   whileInView={{ opacity: 1, x: 0 }}
@@ -91,12 +72,14 @@ export default function EducationTimeline() {
                   <p className="text-gray-500 text-sm mb-4">
                     {item.location}
                   </p>
-                  <div className="p-3 rounded-lg bg-[var(--color-electric-cyan)]/5 border border-[var(--color-electric-cyan)]/10 flex gap-3 items-start">
-                    <Award className="w-5 h-5 text-[var(--color-electric-cyan)] shrink-0 mt-0.5" />
-                    <p className="text-sm text-gray-300 italic text-left">
-                      {item.highlight}
-                    </p>
-                  </div>
+                  {item.highlight && (
+                    <div className="p-3 rounded-lg bg-[var(--color-electric-cyan)]/5 border border-[var(--color-electric-cyan)]/10 flex gap-3 items-start">
+                      <Award className="w-5 h-5 text-[var(--color-electric-cyan)] shrink-0 mt-0.5" />
+                      <p className="text-sm text-gray-300 italic text-left">
+                        {item.highlight}
+                      </p>
+                    </div>
+                  )}
                 </motion.div>
 
               </div>
