@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-
+import MaskedText from '../ui/MaskedText'
 // Define the exact shape of the data coming from Sanity
 export interface Experience {
   _id: string;
@@ -31,9 +31,11 @@ export default function ExperienceGrid({ experiences }: { experiences: Experienc
   return (
     <section className="py-20 px-4 max-w-6xl mx-auto">
       <div className="mb-12">
-        <h2 className="text-4xl font-bold tracking-tight text-[var(--color-snow)] mb-4">
-          Engineering <span className="text-[var(--color-electric-cyan)]">Impact</span>
-        </h2>
+        <MaskedText
+            text="Engineering Impact"
+            highlightLastWord={true} // Restores the white/cyan split
+            className="text-4xl md:text-5xl font-bold tracking-tight text-[var(--color-snow)] mb-4"
+          />
         <p className="text-gray-400 font-light">
           Metrics-driven development and scalable architectures.
         </p>
