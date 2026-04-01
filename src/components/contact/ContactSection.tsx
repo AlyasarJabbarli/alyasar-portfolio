@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Mail, Phone, Send } from "lucide-react"; // Removed Github and Linkedin
 import { useState } from "react";
+import MaskedText from "../ui/MaskedText";
 
 // Custom Github Icon matching Lucide's exact style
 const GithubIcon = ({ className }: { className?: string }) => (
@@ -26,22 +27,25 @@ export default function ContactSection() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setTimeout(() => setIsSubmitting(false), 1500); 
+    setTimeout(() => setIsSubmitting(false), 1500);
   };
 
   return (
     <section id="contact" className="py-24 px-4 max-w-6xl mx-auto w-full relative z-10">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-        
-        <motion.div 
+
+        <motion.div
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl font-bold tracking-tight text-[var(--color-snow)] mb-4">
-            Let's <span className="text-[var(--color-electric-cyan)]">Connect</span>
-          </h2>
+
+          <MaskedText
+            text="Let's Connect"
+            highlightLastWord={true} // Restores the white/cyan split
+            className="text-4xl md:text-5xl font-bold tracking-tight text-[var(--color-snow)] mb-4"
+          />
           <p className="text-gray-400 font-light mb-10 max-w-md leading-relaxed">
             I'm currently open to new opportunities. Whether you have a question about my stack or just want to discuss high-performance architecture, my inbox is open.
           </p>
@@ -53,7 +57,7 @@ export default function ContactSection() {
               </div>
               <span className="font-mono text-sm">alyasar.jabbarli@gmail.com</span>
             </a>
-            
+
             <a href="tel:+36703604522" className="flex items-center gap-4 text-gray-400 hover:text-[var(--color-electric-cyan)] transition-colors group" data-interactive="true">
               <div className="w-12 h-12 rounded-full bg-[var(--color-snow)]/5 border border-[var(--color-snow)]/10 flex items-center justify-center group-hover:border-[var(--color-electric-cyan)]/30 transition-colors">
                 <Phone className="w-5 h-5" />
@@ -73,7 +77,7 @@ export default function ContactSection() {
           </div>
         </motion.div>
 
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, x: 30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
@@ -82,20 +86,20 @@ export default function ContactSection() {
           <form onSubmit={handleSubmit} className="p-8 rounded-3xl bg-[var(--color-snow)]/5 border border-[var(--color-snow)]/10 backdrop-blur-md flex flex-col gap-6">
             <div className="flex flex-col gap-2">
               <label htmlFor="name" className="text-xs font-mono text-gray-500 uppercase tracking-wider">Name</label>
-              <input 
-                type="text" 
-                id="name" 
+              <input
+                type="text"
+                id="name"
                 required
                 className="w-full bg-transparent border-b border-[var(--color-snow)]/20 px-0 py-2 text-[var(--color-snow)] placeholder:text-gray-600 focus:outline-none focus:border-[var(--color-electric-cyan)] transition-colors"
                 placeholder="John Doe"
               />
             </div>
-            
+
             <div className="flex flex-col gap-2">
               <label htmlFor="email" className="text-xs font-mono text-gray-500 uppercase tracking-wider">Email</label>
-              <input 
-                type="email" 
-                id="email" 
+              <input
+                type="email"
+                id="email"
                 required
                 className="w-full bg-transparent border-b border-[var(--color-snow)]/20 px-0 py-2 text-[var(--color-snow)] placeholder:text-gray-600 focus:outline-none focus:border-[var(--color-electric-cyan)] transition-colors"
                 placeholder="john@example.com"
@@ -104,8 +108,8 @@ export default function ContactSection() {
 
             <div className="flex flex-col gap-2">
               <label htmlFor="message" className="text-xs font-mono text-gray-500 uppercase tracking-wider">Message</label>
-              <textarea 
-                id="message" 
+              <textarea
+                id="message"
                 required
                 rows={4}
                 className="w-full bg-transparent border-b border-[var(--color-snow)]/20 px-0 py-2 text-[var(--color-snow)] placeholder:text-gray-600 focus:outline-none focus:border-[var(--color-electric-cyan)] transition-colors resize-none"
@@ -113,8 +117,8 @@ export default function ContactSection() {
               />
             </div>
 
-            <button 
-              type="submit" 
+            <button
+              type="submit"
               disabled={isSubmitting}
               className="mt-4 w-full py-4 rounded-xl bg-[var(--color-electric-cyan)] text-[var(--color-obsidian)] font-bold flex items-center justify-center gap-2 hover:bg-[var(--color-snow)] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               data-interactive="true"
