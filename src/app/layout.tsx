@@ -3,7 +3,6 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import CustomCursor from "@/components/ui/CustomCursor";
 import MagneticDock from "@/components/ui/MagneticDock";
-import type { Metadata } from "next";
 
 
 const geistSans = Geist({
