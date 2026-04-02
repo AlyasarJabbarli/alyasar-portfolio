@@ -81,10 +81,10 @@ export default function ContactSection() {
 
             <div className="flex gap-4 pt-4 border-t border-[var(--color-snow)]/10 mt-8 max-w-xs">
               {/* Swapped to our custom icons here */}
-              <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="w-12 h-12 rounded-full bg-[var(--color-snow)]/5 border border-[var(--color-snow)]/10 flex items-center justify-center text-gray-400 hover:text-[var(--color-snow)] hover:border-[var(--color-snow)]/30 transition-all" data-interactive="true">
+              <a href="https://www.linkedin.com/in/alyasar-jabbarli-813060215/" target="_blank" rel="noreferrer" className="w-12 h-12 rounded-full bg-[var(--color-snow)]/5 border border-[var(--color-snow)]/10 flex items-center justify-center text-gray-400 hover:text-[var(--color-snow)] hover:border-[var(--color-snow)]/30 transition-all" data-interactive="true">
                 <LinkedinIcon className="w-5 h-5" />
               </a>
-              <a href="https://github.com" target="_blank" rel="noreferrer" className="w-12 h-12 rounded-full bg-[var(--color-snow)]/5 border border-[var(--color-snow)]/10 flex items-center justify-center text-gray-400 hover:text-[var(--color-snow)] hover:border-[var(--color-snow)]/30 transition-all" data-interactive="true">
+              <a href="https://github.com/AlyasarJabbarli" target="_blank" rel="noreferrer" className="w-12 h-12 rounded-full bg-[var(--color-snow)]/5 border border-[var(--color-snow)]/10 flex items-center justify-center text-gray-400 hover:text-[var(--color-snow)] hover:border-[var(--color-snow)]/30 transition-all" data-interactive="true">
                 <GithubIcon className="w-5 h-5" />
               </a>
             </div>
