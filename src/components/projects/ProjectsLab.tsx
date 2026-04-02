@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import MaskedText from "../ui/MaskedText";
 
-interface Project {
+export interface Project {
   _id: string;
   title: string;
   description: string;
