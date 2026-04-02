@@ -1,3 +1,8 @@
+"use client";
+
+import { motion } from "framer-motion";
+
+
 export const ExperienceCard = ({ company, role, metric }: any) => (
     <motion.div 
       whileHover={{ y: -5 }}
