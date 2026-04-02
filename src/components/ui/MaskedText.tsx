@@ -29,7 +29,7 @@ export default function MaskedText({
   const child = {
     visible: {
       y: 0,
-      transition: { type: "spring", damping: 12, stiffness: 100 },
+      transition: { type: "spring" as const, damping: 12, stiffness: 100 },
     },
     hidden: {
       y: "200%",
