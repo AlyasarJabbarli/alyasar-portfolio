@@ -1,8 +1,11 @@
 "use server";
 
 import { z } from "zod";
+import { Resend } from "resend";
 
-// Define the strict validation rules based on your inputs
+// Initialize the Resend client
+const resend = new Resend(process.env.RESEND_API_KEY);
+
 const contactSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
   email: z.string().email({ message: "Please enter a valid email address." }),
@@ -16,7 +19,6 @@ export async function sendContactMessage(prevState: any, formData: FormData) {
     message: formData.get("message"),
   };
 
-  // Validate against our schema
   const validatedData = contactSchema.safeParse(rawData);
 
   if (!validatedData.success) {
@@ -27,12 +29,33 @@ export async function sendContactMessage(prevState: any, formData: FormData) {
     };
   }
 
-  // Simulate network request (Here you will hook up Resend, SendGrid, or Nodemailer later)
-  await new Promise((resolve) => setTimeout(resolve, 1500));
+  try {
+    // Send the actual email
+    await resend.emails.send({
+      from: "Portfolio <onboarding@resend.dev>", // Resend's default testing address
+      to: "alyasar.jabbarli@gmail.com", // This MUST be the email you used to sign up for Resend
+      replyTo: validatedData.data.email, // This allows you to just hit "Reply" in your Gmail app
+      subject: `New Portfolio Message from ${validatedData.data.name}`,
+      text: `
+Name: ${validatedData.data.name}
+Email: ${validatedData.data.email}
 
-  return {
-    success: true,
-    message: "Transmission successful. I'll get back to you shortly.",
-    errors: null,
-  };
+Message:
+${validatedData.data.message}
+      `,
+    });
+
+    return {
+      success: true,
+      message: "Transmission successful. I'll get back to you shortly.",
+      errors: null,
+    };
+  } catch (error) {
+    console.error("Resend Error:", error);
+    return {
+      success: false,
+      message: "Failed to send the message. Please try again or email me directly.",
+      errors: null,
+    };
+  }
 }
