@@ -59,7 +59,7 @@ export default function ContactSection() {
               <span className="font-mono text-sm">alyasar.jabbarli@gmail.com</span>
             </a>
 
-            <a href="tel:+36703604522" className="flex items-center gap-4 text-gray-400 hover:text-[var(--color-electric-cyan)] transition-colors group" data-interactive="true">
+            <div className="flex items-center gap-4 text-gray-400 hover:text-[var(--color-electric-cyan)] transition-colors group" data-interactive="true">
               <div className="w-12 h-12 rounded-full bg-[var(--color-snow)]/5 border border-[var(--color-snow)]/10 flex items-center justify-center group-hover:border-[var(--color-electric-cyan)]/30 transition-colors">
                 <Phone className="w-5 h-5" />
               </div>
@@ -76,7 +76,8 @@ export default function ContactSection() {
                     Click to reveal phone number
                   </button>
                 )}
-              </div>            </a>
+              </div>            
+            </div>
 
             <div className="flex gap-4 pt-4 border-t border-[var(--color-snow)]/10 mt-8 max-w-xs">
               {/* Swapped to our custom icons here */}
