@@ -23,6 +23,7 @@ const LinkedinIcon = ({ className }: { className?: string }) => (
 
 export default function ContactSection() {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showPhone, setShowPhone] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -62,8 +63,20 @@ export default function ContactSection() {
               <div className="w-12 h-12 rounded-full bg-[var(--color-snow)]/5 border border-[var(--color-snow)]/10 flex items-center justify-center group-hover:border-[var(--color-electric-cyan)]/30 transition-colors">
                 <Phone className="w-5 h-5" />
               </div>
-              <span className="font-mono text-sm">+36 70 360 4522</span>
-            </a>
+              <div className="text-gray-400">
+                {showPhone ? (
+                  <a href="tel:+36703604522" className="text-[var(--color-electric-cyan)] hover:underline">
+                    +36 70 360 45 22
+                  </a>
+                ) : (
+                  <button
+                    onClick={() => setShowPhone(true)}
+                    className="text-sm px-3 py-1 border border-[var(--color-snow)]/20 rounded-full hover:border-[var(--color-electric-cyan)] transition-colors"
+                  >
+                    Click to reveal phone number
+                  </button>
+                )}
+              </div>            </a>
 
             <div className="flex gap-4 pt-4 border-t border-[var(--color-snow)]/10 mt-8 max-w-xs">
               {/* Swapped to our custom icons here */}
