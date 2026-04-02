@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import CustomCursor from "@/components/ui/CustomCursor";
 import MagneticDock from "@/components/ui/MagneticDock";
+import type { Metadata } from "next";
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,8 +17,32 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Alyasar Jabbarli | Software Engineer",
-  description: "Architecting high-performance full-stack applications.",
+  title: "Alyasar Jabbarli | Software Engineer & Data Engineer",
+  description: "High-performance frontend architecture bridging the gap with machine learning and data science. Explore my technical ecosystem and shipped platforms.",
+  keywords: ["Software Engineer", "Data Engineer", "Next.js", "React", "Machine Learning", "Budapest"],
+  metadataBase: new URL("https://alyasar.netlify.app"),
+  openGraph: {
+    title: "Alyasar Jabbarli | Engineering Portfolio",
+    description: "Bridging Frontend Architecture and Data Science.",
+    url: "https://alyasar.netlify.app",
+    siteName: "Alyasar Jabbarli Portfolio",
+    images: [
+      {
+        url: "/og-image.jpg", // We will add this image in the next step
+        width: 1200,
+        height: 630,
+        alt: "Alyasar Jabbarli Portfolio Preview",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Alyasar Jabbarli | Software Engineer",
+    description: "High-performance frontend architecture and data science.",
+    images: ["/og-image.jpg"],
+  },
 };
 
 export default function RootLayout({
