@@ -3,10 +3,11 @@
 import { useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Points, PointMaterial } from "@react-three/drei";
+import type { Points as ThreePoints } from "three";
 import * as random from "maath/random";
 
 function ParticleField(props: any) {
-  const ref = useRef<any>();
+  const ref = useRef<ThreePoints>(null);
   
   // FIX: 4500 is perfectly divisible by 3 (X, Y, Z for exactly 1500 particles).
   // This prevents the incomplete vertex array that causes the NaN crash.
