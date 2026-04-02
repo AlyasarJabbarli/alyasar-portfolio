@@ -25,13 +25,7 @@ export default async function Home() {
       <div id="experience" className="w-full relative z-10 bg-[var(--color-obsidian)]">
         <ExperienceGrid experiences={experiences} />
       </div>
-      {/* ... Experience Grid Section ... */}
 
-      <div className="w-full relative z-10 bg-[var(--color-obsidian)] border-t border-[var(--color-snow)]/5">
-        <SkillNetwork />
-      </div>
-
-      {/* ... Projects Lab Section ... */}
       <div className="w-full relative z-10 bg-[var(--color-obsidian)] border-t border-[var(--color-snow)]/5">
         <ProjectsLab projects={projects} />
       </div>
@@ -39,7 +33,13 @@ export default async function Home() {
       <div id="education" className="w-full relative z-10 bg-[var(--color-obsidian)] border-t border-[var(--color-snow)]/5">
         <EducationTimeline items={educationItems} />
       </div>
+      {/* ... Experience Grid Section ... */}
 
+      <div className="w-full relative z-10 bg-[var(--color-obsidian)] border-t border-[var(--color-snow)]/5">
+        <SkillNetwork />
+      </div>
+
+      {/* ... Projects Lab Section ... */}
       <div className="w-full relative z-10 bg-[var(--color-obsidian)] border-t border-[var(--color-snow)]/5">
         <ContactSection />
       </div>

@@ -46,7 +46,7 @@ export default function ExperienceGrid({ experiences }: { experiences: Experienc
           No experience data found. Please add content in the Sanity Studio.
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[200px]">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[250px]">
           {experiences.map((item, index) => (
             <motion.div
               key={item._id}
