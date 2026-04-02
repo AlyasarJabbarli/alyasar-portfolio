@@ -1,0 +1,2100 @@
+This file is a merged representation of the entire codebase, combined into a single document by Repomix.
+
+<file_summary>
+This section contains a summary of this file.
+
+<purpose>
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+</purpose>
+
+<file_format>
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+5. Multiple file entries, each consisting of:
+  - File path as an attribute
+  - Full contents of the file
+</file_format>
+
+<usage_guidelines>
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+</usage_guidelines>
+
+<notes>
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Files are sorted by Git change count (files with more changes are at the bottom)
+</notes>
+
+</file_summary>
+
+<directory_structure>
+.gitignore
+AGENTS.md
+CLAUDE.md
+components.json
+eslint.config.mjs
+next.config.ts
+package.json
+postcss.config.mjs
+public/Alyasar_Jabbarli_CV.pdf
+public/file.svg
+public/globe.svg
+public/next.svg
+public/vercel.svg
+public/window.svg
+README.md
+sanity.cli.ts
+sanity.config.ts
+sanity/schemas/experience.ts
+src/actions/contact.ts
+src/app/favicon.ico
+src/app/globals.css
+src/app/layout.tsx
+src/app/page.tsx
+src/app/robots.ts
+src/app/sitemap.ts
+src/app/studio/[[...tool]]/layout.tsx
+src/app/studio/[[...tool]]/page.tsx
+src/components/bento/ExperienceGrid.tsx
+src/components/BentoGrid.tsx
+src/components/canvas/DataNetwork.tsx
+src/components/contact/ContactSection.tsx
+src/components/contact/SubmitButton.tsx
+src/components/education/EducationTimeline.tsx
+src/components/Hero.tsx
+src/components/hero/NeuralHero.tsx
+src/components/projects/ProjectsLab.tsx
+src/components/skills/SkillNetwork.tsx
+src/components/ui/button.tsx
+src/components/ui/CustomCursor.tsx
+src/components/ui/MagneticDock.tsx
+src/components/ui/MaskedText.tsx
+src/lib/utils.ts
+src/sanity/env.ts
+src/sanity/lib/client.ts
+src/sanity/lib/image.ts
+src/sanity/lib/live.ts
+src/sanity/schemaTypes/educationType.ts
+src/sanity/schemaTypes/experienceType.ts
+src/sanity/schemaTypes/index.ts
+src/sanity/schemaTypes/projectType.ts
+src/sanity/structure.ts
+tsconfig.json
+</directory_structure>
+
+<files>
+This section contains the contents of the repository's files.
+
+<file path=".gitignore">
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files (can opt-in for committing if needed)
+.env*
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+</file>
+
+<file path="AGENTS.md">
+<!-- BEGIN:nextjs-agent-rules -->
+# This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` before writing any code. Heed deprecation notices.
+<!-- END:nextjs-agent-rules -->
+</file>
+
+<file path="CLAUDE.md">
+@AGENTS.md
+</file>
+
+<file path="components.json">
+{
+  "$schema": "https://ui.shadcn.com/schema.json",
+  "style": "radix-nova",
+  "rsc": true,
+  "tsx": true,
+  "tailwind": {
+    "config": "",
+    "css": "src/app/globals.css",
+    "baseColor": "neutral",
+    "cssVariables": true,
+    "prefix": ""
+  },
+  "iconLibrary": "lucide",
+  "rtl": false,
+  "aliases": {
+    "components": "@/components",
+    "utils": "@/lib/utils",
+    "ui": "@/components/ui",
+    "lib": "@/lib",
+    "hooks": "@/hooks"
+  },
+  "menuColor": "default",
+  "menuAccent": "subtle",
+  "registries": {}
+}
+</file>
+
+<file path="eslint.config.mjs">
+import { defineConfig, globalIgnores } from "eslint/config";
+import nextVitals from "eslint-config-next/core-web-vitals";
+import nextTs from "eslint-config-next/typescript";
+
+const eslintConfig = defineConfig([
+  ...nextVitals,
+  ...nextTs,
+  // Override default ignores of eslint-config-next.
+  globalIgnores([
+    // Default ignores of eslint-config-next:
+    ".next/**",
+    "out/**",
+    "build/**",
+    "next-env.d.ts",
+  ]),
+]);
+
+export default eslintConfig;
+</file>
+
+<file path="next.config.ts">
+import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
+  /* config options here */
+  reactCompiler: true,
+};
+
+export default nextConfig;
+</file>
+
+<file path="postcss.config.mjs">
+const config = {
+  plugins: {
+    "@tailwindcss/postcss": {},
+  },
+};
+
+export default config;
+</file>
+
+<file path="public/file.svg">
+<svg fill="none" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M14.5 13.5V5.41a1 1 0 0 0-.3-.7L9.8.29A1 1 0 0 0 9.08 0H1.5v13.5A2.5 2.5 0 0 0 4 16h8a2.5 2.5 0 0 0 2.5-2.5m-1.5 0v-7H8v-5H3v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1M9.5 5V2.12L12.38 5zM5.13 5h-.62v1.25h2.12V5zm-.62 3h7.12v1.25H4.5zm.62 3h-.62v1.25h7.12V11z" clip-rule="evenodd" fill="#666" fill-rule="evenodd"/></svg>
+</file>
+
+<file path="public/globe.svg">
+<svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><g clip-path="url(#a)"><path fill-rule="evenodd" clip-rule="evenodd" d="M10.27 14.1a6.5 6.5 0 0 0 3.67-3.45q-1.24.21-2.7.34-.31 1.83-.97 3.1M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.48-1.52a7 7 0 0 1-.96 0H7.5a4 4 0 0 1-.84-1.32q-.38-.89-.63-2.08a40 40 0 0 0 3.92 0q-.25 1.2-.63 2.08a4 4 0 0 1-.84 1.31zm2.94-4.76q1.66-.15 2.95-.43a7 7 0 0 0 0-2.58q-1.3-.27-2.95-.43a18 18 0 0 1 0 3.44m-1.27-3.54a17 17 0 0 1 0 3.64 39 39 0 0 1-4.3 0 17 17 0 0 1 0-3.64 39 39 0 0 1 4.3 0m1.1-1.17q1.45.13 2.69.34a6.5 6.5 0 0 0-3.67-3.44q.65 1.26.98 3.1M8.48 1.5l.01.02q.41.37.84 1.31.38.89.63 2.08a40 40 0 0 0-3.92 0q.25-1.2.63-2.08a4 4 0 0 1 .85-1.32 7 7 0 0 1 .96 0m-2.75.4a6.5 6.5 0 0 0-3.67 3.44 29 29 0 0 1 2.7-.34q.31-1.83.97-3.1M4.58 6.28q-1.66.16-2.95.43a7 7 0 0 0 0 2.58q1.3.27 2.95.43a18 18 0 0 1 0-3.44m.17 4.71q-1.45-.12-2.69-.34a6.5 6.5 0 0 0 3.67 3.44q-.65-1.27-.98-3.1" fill="#666"/></g><defs><clipPath id="a"><path fill="#fff" d="M0 0h16v16H0z"/></clipPath></defs></svg>
+</file>
+
+<file path="public/next.svg">
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 394 80"><path fill="#000" d="M262 0h68.5v12.7h-27.2v66.6h-13.6V12.7H262V0ZM149 0v12.7H94v20.4h44.3v12.6H94v21h55v12.6H80.5V0h68.7zm34.3 0h-17.8l63.8 79.4h17.9l-32-39.7 32-39.6h-17.9l-23 28.6-23-28.6zm18.3 56.7-9-11-27.1 33.7h17.8l18.3-22.7z"/><path fill="#000" d="M81 79.3 17 0H0v79.3h13.6V17l50.2 62.3H81Zm252.6-.4c-1 0-1.8-.4-2.5-1s-1.1-1.6-1.1-2.6.3-1.8 1-2.5 1.6-1 2.6-1 1.8.3 2.5 1a3.4 3.4 0 0 1 .6 4.3 3.7 3.7 0 0 1-3 1.8zm23.2-33.5h6v23.3c0 2.1-.4 4-1.3 5.5a9.1 9.1 0 0 1-3.8 3.5c-1.6.8-3.5 1.3-5.7 1.3-2 0-3.7-.4-5.3-1s-2.8-1.8-3.7-3.2c-.9-1.3-1.4-3-1.4-5h6c.1.8.3 1.6.7 2.2s1 1.2 1.6 1.5c.7.4 1.5.5 2.4.5 1 0 1.8-.2 2.4-.6a4 4 0 0 0 1.6-1.8c.3-.8.5-1.8.5-3V45.5zm30.9 9.1a4.4 4.4 0 0 0-2-3.3 7.5 7.5 0 0 0-4.3-1.1c-1.3 0-2.4.2-3.3.5-.9.4-1.6 1-2 1.6a3.5 3.5 0 0 0-.3 4c.3.5.7.9 1.3 1.2l1.8 1 2 .5 3.2.8c1.3.3 2.5.7 3.7 1.2a13 13 0 0 1 3.2 1.8 8.1 8.1 0 0 1 3 6.5c0 2-.5 3.7-1.5 5.1a10 10 0 0 1-4.4 3.5c-1.8.8-4.1 1.2-6.8 1.2-2.6 0-4.9-.4-6.8-1.2-2-.8-3.4-2-4.5-3.5a10 10 0 0 1-1.7-5.6h6a5 5 0 0 0 3.5 4.6c1 .4 2.2.6 3.4.6 1.3 0 2.5-.2 3.5-.6 1-.4 1.8-1 2.4-1.7a4 4 0 0 0 .8-2.4c0-.9-.2-1.6-.7-2.2a11 11 0 0 0-2.1-1.4l-3.2-1-3.8-1c-2.8-.7-5-1.7-6.6-3.2a7.2 7.2 0 0 1-2.4-5.7 8 8 0 0 1 1.7-5 10 10 0 0 1 4.3-3.5c2-.8 4-1.2 6.4-1.2 2.3 0 4.4.4 6.2 1.2 1.8.8 3.2 2 4.3 3.4 1 1.4 1.5 3 1.5 5h-5.8z"/></svg>
+</file>
+
+<file path="public/vercel.svg">
+<svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1155 1000"><path d="m577.3 0 577.4 1000H0z" fill="#fff"/></svg>
+</file>
+
+<file path="public/window.svg">
+<svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" clip-rule="evenodd" d="M1.5 2.5h13v10a1 1 0 0 1-1 1h-11a1 1 0 0 1-1-1zM0 1h16v11.5a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 0 12.5zm3.75 4.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5M7 4.75a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0m1.75.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5" fill="#666"/></svg>
+</file>
+
+<file path="sanity.cli.ts">
+/**
+* This configuration file lets you run `$ sanity [command]` in this folder
+* Go to https://www.sanity.io/docs/cli to learn more.
+**/
+import { defineCliConfig } from 'sanity/cli'
+
+const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID
+const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET
+
+export default defineCliConfig({ api: { projectId, dataset } })
+</file>
+
+<file path="sanity.config.ts">
+'use client'
+
+/**
+ * This configuration is used to for the Sanity Studio that’s mounted on the `\src\app\studio\[[...tool]]\page.tsx` route
+ */
+
+import {visionTool} from '@sanity/vision'
+import {defineConfig} from 'sanity'
+import {structureTool} from 'sanity/structure'
+
+// Go to https://www.sanity.io/docs/api-versioning to learn how API versioning works
+import {apiVersion, dataset, projectId} from './src/sanity/env'
+import {schema} from './src/sanity/schemaTypes'
+import {structure} from './src/sanity/structure'
+
+export default defineConfig({
+  basePath: '/studio',
+  projectId,
+  dataset,
+  // Add and edit the content schema in the './sanity/schemaTypes' folder
+  schema,
+  plugins: [
+    structureTool({structure}),
+    // Vision is for querying with GROQ from inside the Studio
+    // https://www.sanity.io/docs/the-vision-plugin
+    visionTool({defaultApiVersion: apiVersion}),
+  ],
+})
+</file>
+
+<file path="sanity/schemas/experience.ts">
+// sanity/schemas/experience.ts
+export default {
+    name: 'experience',
+    type: 'document',
+    fields: [
+      { name: 'company', type: 'string' }, // e.g., "Inci Group" 
+      { name: 'role', type: 'string' },    // e.g., "Software Engineer" 
+      { name: 'duration', type: 'string' },
+      { name: 'metrics', type: 'array', of: [{ type: 'string' }] }, // "Reduced LCP by X%" 
+      { name: 'techStack', type: 'array', of: [{ type: 'string' }] },
+    ]
+  }
+</file>
+
+<file path="src/app/robots.ts">
+import { MetadataRoute } from 'next'
+ 
+export default function robots(): MetadataRoute.Robots {
+  return {
+    rules: {
+      userAgent: '*',
+      allow: '/',
+    },
+    sitemap: 'https://alyasar.netlify.app/sitemap.xml',
+  }
+}
+</file>
+
+<file path="src/app/sitemap.ts">
+import { MetadataRoute } from 'next'
+ 
+export default function sitemap(): MetadataRoute.Sitemap {
+  return [
+    {
+      url: 'https://alyasar.netlify.app',
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 1,
+    },
+  ]
+}
+</file>
+
+<file path="src/app/studio/[[...tool]]/layout.tsx">
+// src/app/studio/[[...tool]]/layout.tsx
+export const metadata = {
+    title: "Sanity Studio",
+    description: "Manage portfolio content",
+  };
+  
+  export default function StudioLayout({
+    children,
+  }: {
+    children: React.ReactNode;
+  }) {
+    // We just return the children directly. 
+    // Next.js will automatically nest this inside the <body> of your RootLayout.
+    return <>{children}</>;
+  }
+</file>
+
+<file path="src/app/studio/[[...tool]]/page.tsx">
+"use client";
+
+import { NextStudio } from "next-sanity/studio";
+// 4 levels up: [[...tool]] -> studio -> app -> src -> root
+import config from "../../../../sanity.config"; 
+
+export default function StudioPage() {
+  return <NextStudio config={config} />;
+}
+</file>
+
+<file path="src/components/contact/SubmitButton.tsx">
+"use client";
+
+import { useFormStatus } from "react-dom";
+import { Send, Loader2 } from "lucide-react";
+
+export default function SubmitButton() {
+  const { pending } = useFormStatus();
+
+  return (
+    <button
+      type="submit"
+      disabled={pending}
+      className="mt-4 w-full py-4 rounded-xl bg-[var(--color-electric-cyan)] text-[var(--color-obsidian)] font-bold flex items-center justify-center gap-2 hover:bg-[var(--color-snow)] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+      data-interactive="true"
+    >
+      {pending ? (
+        <>
+          <Loader2 className="w-5 h-5 animate-spin" />
+          Transmitting...
+        </>
+      ) : (
+        <>
+          Send Message
+          <Send className="w-4 h-4" />
+        </>
+      )}
+    </button>
+  );
+}
+</file>
+
+<file path="src/components/Hero.tsx">
+"use client";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+
+export default function Hero() {
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"],
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+
+  return (
+    <section ref={containerRef} className="relative h-screen flex items-center justify-center overflow-hidden bg-obsidian text-snow">
+      {/* Neural Background Effect */}
+      <div className="absolute inset-0 z-0 opacity-30">
+        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-electricCyan/20 rounded-full blur-[120px] animate-neural-pulse" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-600/20 rounded-full blur-[120px]" />
+      </div>
+
+      <motion.div style={{ y, opacity }} className="z-10 text-center px-4">
+        <motion.span 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-electricCyan font-mono tracking-widest text-sm mb-4 block"
+        >
+          &lt;SOFTWARE ENGINEER / DATA SCIENTIST /&gt;
+        </motion.span>
+        
+        <motion.h1 
+          className="text-6xl md:text-8xl font-bold tracking-tighter mb-6"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8 }}
+        >
+          Alyasar Jabbarli [cite: 1]
+        </motion.h1>
+
+        <p className="max-w-2xl mx-auto text-gray-400 text-lg md:text-xl font-light leading-relaxed">
+          Currently architecting modular ecosystems at **Inci Group** [cite: 18] and 
+          pursuing a **Master of Data Science** at **ELTE**[cite: 54, 55]. 
+          Focused on high-performance, type-safe full-stack applications[cite: 6, 7].
+        </p>
+
+        <div className="mt-10 flex gap-4 justify-center">
+          <button className="px-8 py-3 bg-electricCyan text-obsidian font-bold rounded-full hover:scale-105 transition-transform">
+            View Research
+          </button>
+          <button className="px-8 py-3 border border-snow/20 rounded-full hover:bg-snow/10 transition-colors">
+            Contact Me
+          </button>
+        </div>
+      </motion.div>
+    </section>
+  );
+}
+</file>
+
+<file path="src/components/skills/SkillNetwork.tsx">
+"use client";
+
+import { useEffect, useRef } from "react";
+import * as d3Force from "d3-force";
+import * as d3Drag from "d3-drag";
+import * as d3Selection from "d3-selection";
+import MaskedText from "../ui/MaskedText";
+
+// Your tech stack, categorized by domain
+const nodes = [
+    { id: "Python", group: 1, radius: 40 },
+    { id: "Machine Learning", group: 1, radius: 55 },
+    { id: "FastAPI", group: 1, radius: 35 },
+    { id: "Data Science", group: 1, radius: 50 },
+    { id: "Next.js 16", group: 2, radius: 50 },
+    { id: "React", group: 2, radius: 45 },
+    { id: "TypeScript", group: 2, radius: 45 },
+    { id: "Tailwind v4", group: 2, radius: 40 },
+    { id: "Framer Motion", group: 2, radius: 45 },
+    { id: "PostgreSQL", group: 3, radius: 40 },
+    { id: "WebSockets", group: 3, radius: 45 },
+    { id: "System Design", group: 3, radius: 55 },
+];
+
+// Invisible springs connecting related technologies
+const links = [
+    { source: "Python", target: "Machine Learning" },
+    { source: "Python", target: "FastAPI" },
+    { source: "Python", target: "Data Science" },
+    { source: "Next.js 16", target: "React" },
+    { source: "Next.js 16", target: "TypeScript" },
+    { source: "React", target: "Framer Motion" },
+    { source: "React", target: "Tailwind v4" },
+    { source: "FastAPI", target: "PostgreSQL" },
+    { source: "Next.js 16", target: "WebSockets" },
+    { source: "System Design", target: "PostgreSQL" },
+    { source: "System Design", target: "WebSockets" },
+    { source: "Data Science", target: "System Design" }, // Bridging the gap
+];
+
+export default function SkillNetwork() {
+    const containerRef = useRef<HTMLDivElement>(null);
+    const svgRef = useRef<SVGSVGElement>(null);
+
+    useEffect(() => {
+        if (!containerRef.current || !svgRef.current) return;
+
+        const width = containerRef.current.clientWidth;
+        const height = 500;
+
+        // Deep copy data so D3 doesn't mutate our original arrays during hot-reloads
+        const nodesCopy = nodes.map((d) => ({ ...d }));
+        const linksCopy = links.map((d) => ({ ...d }));
+
+        // 1. Initialize the D3 Physics Engine
+        const simulation = d3Force.forceSimulation(nodesCopy as any)
+            .force("link", d3Force.forceLink(linksCopy).id((d: any) => d.id).distance(120))
+            .force("charge", d3Force.forceManyBody().strength(-400)) // Repel each other
+            .force("center", d3Force.forceCenter(width / 2, height / 2)) // Pull to middle
+            .force("collide", d3Force.forceCollide().radius((d: any) => d.radius + 10)); // Prevent overlapping
+
+        const svg = d3Selection.select(svgRef.current);
+        const container = d3Selection.select(containerRef.current);
+
+        // Clear previous renders (for React strict mode hot-reloading)
+        svg.selectAll("*").remove();
+        container.selectAll(".skill-node").remove();
+
+        // 2. Draw the connection lines (SVG)
+        const linkElements = svg
+            .append("g")
+            .selectAll("line")
+            .data(linksCopy)
+            .enter()
+            .append("line")
+            .attr("stroke", "rgba(255, 255, 255, 0.1)")
+            .attr("stroke-width", 2);
+
+        // 3. Draw the nodes (HTML DOM Elements for beautiful CSS glassmorphism)
+        const nodeElements = container
+            .selectAll(".skill-node")
+            .data(nodesCopy)
+            .enter()
+            .append("div")
+            .attr("class", "skill-node absolute rounded-full flex flex-col items-center justify-center text-center font-bold text-xs leading-tight p-2 cursor-grab active:cursor-grabbing border backdrop-blur-md transition-colors duration-300 hover:border-[var(--color-electric-cyan)] hover:shadow-[0_0_20px_rgba(0,240,255,0.4)]")            .style("width", (d) => `${d.radius * 2}px`)
+            .style("height", (d) => `${d.radius * 2}px`)
+            // Custom colors based on domain group
+            .style("background", (d) => d.group === 1 ? "rgba(0, 240, 255, 0.05)" : d.group === 2 ? "rgba(255, 255, 255, 0.05)" : "rgba(100, 100, 255, 0.05)")
+            .style("border-color", (d) => d.group === 1 ? "rgba(0, 240, 255, 0.3)" : "rgba(255, 255, 255, 0.2)")
+            .style("color", "var(--color-snow)")
+            .style("user-select", "none")
+            .text((d) => d.id)
+            .call(
+                d3Drag.drag<HTMLDivElement, any>()
+                    .on("start", (event, d) => {
+                        if (!event.active) simulation.alphaTarget(0.3).restart();
+                        d.fx = d.x;
+                        d.fy = d.y;
+                    })
+                    .on("drag", (event, d) => {
+                        d.fx = event.x;
+                        d.fy = event.y;
+                    })
+                    .on("end", (event, d) => {
+                        if (!event.active) simulation.alphaTarget(0);
+                        d.fx = null;
+                        d.fy = null;
+                    }) as any
+            );
+
+        // 4. The 60fps Animation Loop (Bypassing React State)
+        simulation.on("tick", () => {
+            // KEEP NODES INSIDE THE BOX
+            // We use Math.max and Math.min to prevent the x and y coordinates from going past the borders
+            nodesCopy.forEach((d: any) => {
+                d.x = Math.max(d.radius, Math.min(width - d.radius, d.x));
+                d.y = Math.max(d.radius, Math.min(height - d.radius, d.y));
+            });
+
+            // Update SVG lines
+            linkElements
+                .attr("x1", (d: any) => d.source.x)
+                .attr("y1", (d: any) => d.source.y)
+                .attr("x2", (d: any) => d.target.x)
+                .attr("y2", (d: any) => d.target.y);
+
+            // Update HTML Divs using hardware-accelerated CSS transforms
+            nodeElements.style("transform", (d: any) => `translate(${d.x - d.radius}px, ${d.y - d.radius}px)`);
+        });
+
+        return () => {
+            simulation.stop(); // Cleanup physics loop on unmount
+        };
+    }, []);
+
+    return (
+        <section id="skills" className="py-24 px-4 max-w-6xl mx-auto w-full relative z-10">
+            <div className="mb-8 flex flex-col items-center text-center">
+                <MaskedText
+                    text="Technical Ecosystem"
+                    highlightLastWord={true}
+                    className="text-4xl md:text-5xl font-bold tracking-tight text-[var(--color-snow)] mb-4 justify-center"
+                />
+                <p className="text-gray-400 font-light max-w-xl">
+                    Interact with the graph. A physics-based representation bridging Data Science modeling with High-Performance Frontend architecture.
+                </p>
+            </div>
+
+            {/* Physics Container */}
+            <div
+                ref={containerRef}
+                className="relative w-full h-[500px] rounded-3xl bg-[var(--color-snow)]/5 border border-[var(--color-snow)]/10 overflow-hidden"
+            >
+                <svg ref={svgRef} className="absolute inset-0 w-full h-full pointer-events-none" />
+            </div>
+        </section>
+    );
+}
+</file>
+
+<file path="src/components/ui/button.tsx">
+import * as React from "react"
+import { cva, type VariantProps } from "class-variance-authority"
+import { Slot } from "radix-ui"
+
+import { cn } from "@/lib/utils"
+
+const buttonVariants = cva(
+  "group/button inline-flex shrink-0 items-center justify-center rounded-lg border border-transparent bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+  {
+    variants: {
+      variant: {
+        default: "bg-primary text-primary-foreground [a]:hover:bg-primary/80",
+        outline:
+          "border-border bg-background hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:border-input dark:bg-input/30 dark:hover:bg-input/50",
+        secondary:
+          "bg-secondary text-secondary-foreground hover:bg-secondary/80 aria-expanded:bg-secondary aria-expanded:text-secondary-foreground",
+        ghost:
+          "hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:hover:bg-muted/50",
+        destructive:
+          "bg-destructive/10 text-destructive hover:bg-destructive/20 focus-visible:border-destructive/40 focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:hover:bg-destructive/30 dark:focus-visible:ring-destructive/40",
+        link: "text-primary underline-offset-4 hover:underline",
+      },
+      size: {
+        default:
+          "h-8 gap-1.5 px-2.5 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2",
+        xs: "h-6 gap-1 rounded-[min(var(--radius-md),10px)] px-2 text-xs in-data-[slot=button-group]:rounded-lg has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&_svg:not([class*='size-'])]:size-3",
+        sm: "h-7 gap-1 rounded-[min(var(--radius-md),12px)] px-2.5 text-[0.8rem] in-data-[slot=button-group]:rounded-lg has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&_svg:not([class*='size-'])]:size-3.5",
+        lg: "h-9 gap-1.5 px-2.5 has-data-[icon=inline-end]:pr-3 has-data-[icon=inline-start]:pl-3",
+        icon: "size-8",
+        "icon-xs":
+          "size-6 rounded-[min(var(--radius-md),10px)] in-data-[slot=button-group]:rounded-lg [&_svg:not([class*='size-'])]:size-3",
+        "icon-sm":
+          "size-7 rounded-[min(var(--radius-md),12px)] in-data-[slot=button-group]:rounded-lg",
+        "icon-lg": "size-9",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default",
+    },
+  }
+)
+
+function Button({
+  className,
+  variant = "default",
+  size = "default",
+  asChild = false,
+  ...props
+}: React.ComponentProps<"button"> &
+  VariantProps<typeof buttonVariants> & {
+    asChild?: boolean
+  }) {
+  const Comp = asChild ? Slot.Root : "button"
+
+  return (
+    <Comp
+      data-slot="button"
+      data-variant={variant}
+      data-size={size}
+      className={cn(buttonVariants({ variant, size, className }))}
+      {...props}
+    />
+  )
+}
+
+export { Button, buttonVariants }
+</file>
+
+<file path="src/components/ui/CustomCursor.tsx">
+"use client";
+
+import { useEffect, useState } from "react";
+import { motion, useMotionValue, useSpring } from "framer-motion";
+
+export default function CustomCursor() {
+  const [isHovering, setIsHovering] = useState(false);
+  
+  // Motion values bypass the React render cycle for performance
+  const cursorX = useMotionValue(-100);
+  const cursorY = useMotionValue(-100);
+
+  // Apply physics to the cursor movement (adds a slight "drag" effect)
+  const springConfig = { damping: 25, stiffness: 400, mass: 0.5 };
+  const smoothX = useSpring(cursorX, springConfig);
+  const smoothY = useSpring(cursorY, springConfig);
+
+  useEffect(() => {
+    const moveCursor = (e: MouseEvent) => {
+      // Offset by 16px to center the 32x32px cursor on the actual pointer
+      cursorX.set(e.clientX - 16); 
+      cursorY.set(e.clientY - 16);
+      
+      // Detect if the user is hovering over interactive elements
+      const target = e.target as HTMLElement;
+      if (target.closest("a, button, input, [data-interactive]")) {
+        setIsHovering(true);
+      } else {
+        setIsHovering(false);
+      }
+    };
+
+    window.addEventListener("mousemove", moveCursor);
+    return () => window.removeEventListener("mousemove", moveCursor);
+  }, [cursorX, cursorY]);
+
+  // Hide the default browser cursor completely
+  useEffect(() => {
+    document.body.style.cursor = "none";
+    return () => { document.body.style.cursor = "auto"; };
+  }, []);
+
+  return (
+    <motion.div
+      className="fixed top-0 left-0 w-8 h-8 rounded-full border-2 border-[var(--color-electric-cyan)] pointer-events-none z-[9999] flex items-center justify-center mix-blend-difference"
+      style={{
+        x: smoothX,
+        y: smoothY,
+      }}
+      animate={{
+        scale: isHovering ? 2.5 : 1,
+        backgroundColor: isHovering ? "rgba(0, 240, 255, 0.1)" : "rgba(0, 0, 0, 0)",
+      }}
+      transition={{ duration: 0.2 }}
+    >
+      {/* Inner targeting dot */}
+      <motion.div 
+        className="w-1 h-1 bg-[var(--color-electric-cyan)] rounded-full"
+        animate={{
+          opacity: isHovering ? 0 : 1,
+          scale: isHovering ? 0 : 1,
+        }}
+        transition={{ duration: 0.2 }}
+      />
+    </motion.div>
+  );
+}
+</file>
+
+<file path="src/components/ui/MagneticDock.tsx">
+"use client";
+
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { useRef } from "react";
+import { Home, Briefcase, Code2, GraduationCap, Mail } from "lucide-react";
+import Link from "next/link";
+
+// Reusable physics-driven icon component
+function DockIcon({ mouseX, icon: Icon, href, label }: { mouseX: any, icon: any, href: string, label: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  // Calculate the distance from the mouse to the center of the icon
+  const distance = useTransform(mouseX, (val: number) => {
+    const bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 };
+    return val - bounds.x - bounds.width / 2;
+  });
+
+  // Transform that distance into a width value (base 48px, max 80px when hovered)
+  const widthSync = useTransform(distance, [-150, 0, 150], [48, 80, 48]);
+  const width = useSpring(widthSync, { mass: 0.1, stiffness: 150, damping: 12 });
+
+  return (
+    <Link href={href}>
+      <motion.div
+        ref={ref}
+        style={{ width }}
+        className="relative flex aspect-square items-center justify-center rounded-full bg-snow/5 border border-snow/10 text-gray-400 backdrop-blur-md transition-colors hover:text-[var(--color-electric-cyan)] hover:bg-snow/10 group"
+        data-interactive="true" // Tells our custom cursor to expand
+      >
+        <Icon className="w-1/2 h-1/2" />
+        
+        {/* Tooltip */}
+        <span className="absolute -top-12 scale-0 rounded-md bg-[var(--color-obsidian)] border border-[var(--color-electric-cyan)]/30 px-3 py-1 text-xs font-mono text-[var(--color-snow)] transition-all group-hover:scale-100 backdrop-blur-xl">
+          {label}
+        </span>
+      </motion.div>
+    </Link>
+  );
+}
+
+export default function MagneticDock() {
+  // Infinity ensures icons stay small when the mouse is outside the dock
+  const mouseX = useMotionValue(Infinity);
+
+  const navItems = [
+    { icon: Home, label: "Home", href: "#home" },
+    { icon: Briefcase, label: "Experience", href: "#experience" },
+    { icon: Code2, label: "Projects", href: "#projects" },
+    { icon: GraduationCap, label: "Education", href: "#education" },
+    { icon: Mail, label: "Contact", href: "#contact" },
+  ];
+
+  return (
+    <motion.div
+      initial={{ y: 100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }} // Custom spring easing
+      className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 flex h-20 items-end gap-3 rounded-3xl bg-[var(--color-deep-slate)]/40 border border-snow/10 px-4 pb-3 backdrop-blur-2xl shadow-2xl shadow-black/50"
+      onMouseMove={(e) => mouseX.set(e.pageX)}
+      onMouseLeave={() => mouseX.set(Infinity)}
+    >
+      {navItems.map((item, idx) => (
+        <DockIcon key={idx} mouseX={mouseX} {...item} />
+      ))}
+    </motion.div>
+  );
+}
+</file>
+
+<file path="src/lib/utils.ts">
+import { clsx, type ClassValue } from "clsx"
+import { twMerge } from "tailwind-merge"
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
+}
+</file>
+
+<file path="src/sanity/env.ts">
+export const apiVersion =
+  process.env.NEXT_PUBLIC_SANITY_API_VERSION || '2026-04-01'
+
+export const dataset = assertValue(
+  process.env.NEXT_PUBLIC_SANITY_DATASET,
+  'Missing environment variable: NEXT_PUBLIC_SANITY_DATASET'
+)
+
+export const projectId = assertValue(
+  process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+  'Missing environment variable: NEXT_PUBLIC_SANITY_PROJECT_ID'
+)
+
+function assertValue<T>(v: T | undefined, errorMessage: string): T {
+  if (v === undefined) {
+    throw new Error(errorMessage)
+  }
+
+  return v
+}
+</file>
+
+<file path="src/sanity/lib/client.ts">
+import { createClient } from 'next-sanity'
+
+import { apiVersion, dataset, projectId } from '../env'
+
+export const client = createClient({
+  projectId,
+  dataset,
+  apiVersion,
+  useCdn: true, // Set to false if statically generating pages, using ISR or tag-based revalidation
+})
+</file>
+
+<file path="src/sanity/lib/image.ts">
+import createImageUrlBuilder from '@sanity/image-url'
+import type { SanityImageSource } from "@sanity/image-url";
+
+import { dataset, projectId } from '../env'
+
+// https://www.sanity.io/docs/image-url
+const builder = createImageUrlBuilder({ projectId, dataset })
+
+export const urlFor = (source: SanityImageSource) => {
+  return builder.image(source)
+}
+</file>
+
+<file path="src/sanity/lib/live.ts">
+// Querying with "sanityFetch" will keep content automatically updated
+// Before using it, import and render "<SanityLive />" in your layout, see
+// https://github.com/sanity-io/next-sanity#live-content-api for more information.
+import { defineLive } from "next-sanity/live";
+import { client } from './client'
+
+export const { sanityFetch, SanityLive } = defineLive({
+  client,
+});
+</file>
+
+<file path="src/sanity/schemaTypes/educationType.ts">
+import { defineField, defineType } from 'sanity'
+
+export const educationType = defineType({
+  name: 'education',
+  title: 'Education & Honors',
+  type: 'document',
+  fields: [
+    defineField({ name: 'title', title: 'Degree / Certification Title', type: 'string' }),
+    defineField({ name: 'institution', title: 'Institution', type: 'string' }),
+    defineField({ name: 'location', title: 'Location', type: 'string' }),
+    defineField({ name: 'date', title: 'Date Range', type: 'string' }),
+    defineField({ name: 'highlight', title: 'Achievement/Highlight', type: 'text' }),
+    defineField({ 
+      name: 'iconName', 
+      title: 'Icon Name', 
+      type: 'string',
+      description: 'Use "GraduationCap", "Code", or "Award"',
+      options: {
+        list: ['GraduationCap', 'Code', 'Award']
+      }
+    }),
+    defineField({ name: 'order', title: 'Display Order', type: 'number' })
+  ],
+})
+</file>
+
+<file path="src/sanity/schemaTypes/experienceType.ts">
+import { defineField, defineType } from 'sanity'
+
+export const experienceType = defineType({
+  name: 'experience',
+  title: 'Experience',
+  type: 'document',
+  fields: [
+    defineField({ 
+      name: 'company', 
+      title: 'Company Name', 
+      type: 'string',
+      validation: (rule) => rule.required()
+    }),
+    defineField({ 
+      name: 'role', 
+      title: 'Job Role', 
+      type: 'string',
+      validation: (rule) => rule.required() 
+    }),
+    defineField({ 
+      name: 'date', 
+      title: 'Date Range', 
+      type: 'string',
+      description: 'e.g., Jul 2025 - Present' 
+    }),
+    defineField({ 
+      name: 'highlights', 
+      title: 'Technical Highlights', 
+      type: 'array', 
+      of: [{ type: 'string' }],
+      validation: (rule) => rule.max(3).error('Keep it concise for the Bento grid (max 3).')
+    }),
+    defineField({
+      name: 'colSpan',
+      title: 'Grid Column Span',
+      type: 'string',
+      options: {
+        list: [
+          { title: '1 Column', value: 'md:col-span-1' },
+          { title: '2 Columns', value: 'md:col-span-2' },
+        ]
+      },
+      initialValue: 'md:col-span-1'
+    }),
+    defineField({
+      name: 'rowSpan',
+      title: 'Grid Row Span',
+      type: 'string',
+      options: {
+        list: [
+          { title: '1 Row', value: 'md:row-span-1' },
+          { title: '2 Rows', value: 'md:row-span-2' },
+        ]
+      },
+      initialValue: 'md:row-span-1'
+    }),
+    defineField({
+      name: 'order',
+      title: 'Display Order',
+      type: 'number',
+      description: 'Used to sort the cards in the grid (lower numbers appear first)'
+    })
+  ],
+})
+</file>
+
+<file path="src/sanity/schemaTypes/projectType.ts">
+import { defineField, defineType } from 'sanity'
+
+export const projectType = defineType({
+  name: 'project',
+  title: 'Project',
+  type: 'document',
+  fields: [
+    defineField({ name: 'title', title: 'Project Title', type: 'string' }),
+    defineField({ name: 'description', title: 'Description', type: 'text' }),
+    defineField({ 
+      name: 'tech', 
+      title: 'Tech Stack', 
+      type: 'array', 
+      of: [{ type: 'string' }] 
+    }),
+    defineField({ name: 'link', title: 'Live Demo URL', type: 'url' }),
+    defineField({ name: 'github', title: 'GitHub URL', type: 'url' }),
+    defineField({ name: 'order', title: 'Display Order', type: 'number' })
+  ],
+})
+</file>
+
+<file path="src/sanity/structure.ts">
+import type {StructureResolver} from 'sanity/structure'
+
+// https://www.sanity.io/docs/structure-builder-cheat-sheet
+export const structure: StructureResolver = (S) =>
+  S.list()
+    .title('Content')
+    .items(S.documentTypeListItems())
+</file>
+
+<file path="tsconfig.json">
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "react-jsx",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    ".next/dev/types/**/*.ts",
+    "**/*.mts"
+  ],
+  "exclude": ["node_modules"]
+}
+</file>
+
+<file path="README.md">
+# Alyasar Jabbarli | Software Engineer & Data Scientist
+
+A high-performance, interactive personal portfolio bridging the gap between Data Science and modern Frontend Architecture. Built to handle complex WebGL graphics and D3 physics engines while maintaining perfect 60fps animations and robust SEO.
+
+![Next.js](https://img.shields.io/badge/Next.js_16.2-black?style=for-the-badge&logo=next.js&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_v4-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Framer Motion](https://img.shields.io/badge/Framer_Motion-0055FF?style=for-the-badge&logo=framer&logoColor=white)
+![Three.js](https://img.shields.io/badge/Three.js-000000?style=for-the-badge&logo=threedotjs&logoColor=white)
+![Sanity](https://img.shields.io/badge/Sanity_CMS-F03E2F?style=for-the-badge&logo=sanity&logoColor=white)
+
+## ✨ Core Architecture & Features
+
+This project abandons standard template layouts in favor of a heavily engineered, custom interface:
+
+- **Decoupled Data Layer:** Powered by an embedded **Sanity Studio** CMS. Projects, experience, and education timelines are statically generated via React Server Components (RSCs) for zero layout shift and instantaneous load times.
+- **WebGL Data Network:** The hero section utilizes `Three.js` and `@react-three/fiber` to render an interactive, 1,500-node 3D particle sphere that rotates and recalculates in real-time.
+- **Physics-Driven Ecosystem:** The skills section replaces static lists with a **D3.js** force-directed graph. Nodes repel, connect via invisible springs, and can be dragged organically while respecting collision bounding boxes. Optimized via direct DOM mutation to bypass React state lag.
+- **Linear-Style Interactions:** Bento grid cards utilize custom `mousemove` event listeners mapped to CSS variables to create dynamic, glassmorphic spotlight effects that track the cursor.
+- **Cinematic Typography:** Custom `<MaskedText />` components leverage Framer Motion to slide text out of invisible clipping boundaries, complete with automated dual-tone styling.
+
+## 🛠️ Tech Stack
+
+* **Framework:** Next.js 16.2 (App Router, Turbopack)
+* **Language:** TypeScript
+* **Styling:** Tailwind CSS v4 (Custom CSS Variable Architecture)
+* **Animations:** Framer Motion
+* **3D/Graphics:** React Three Fiber, Three.js
+* **Physics:** D3.js (Force, Drag, Selection)
+* **CMS:** Sanity.io (Embedded at `/studio`)
+* **Icons:** Lucide React & Custom SVGs
+
+## 🚀 Local Development
+
+Follow these steps to run the portfolio and the embedded CMS locally.
+
+### 1. Clone the repository
+```bash
+git clone [https://github.com/yourusername/alyasar-portfolio.git](https://github.com/yourusername/alyasar-portfolio.git)
+cd alyasar-portfolio
+````
+
+### 2\. Install dependencies
+
+```bash
+npm install
+```
+
+### 3\. Setup Environment Variables
+
+Create a `.env.local` file in the root directory and add your Sanity project details:
+
+```env
+NEXT_PUBLIC_SANITY_PROJECT_ID="your_project_id"
+NEXT_PUBLIC_SANITY_DATASET="production"
+```
+
+*(You can find your Project ID at [manage.sanity.io](https://manage.sanity.io))*
+
+### 4\. Start the Development Server
+
+```bash
+npm run dev
+```
+
+The frontend will be available at [http://localhost:3000](https://www.google.com/search?q=http://localhost:3000).
+
+## 📝 Managing Content (Sanity CMS)
+
+This portfolio relies on an embedded Headless CMS so you never have to touch the source code to update your resume.
+
+1.  Navigate to [http://localhost:3000/studio](https://www.google.com/search?q=http://localhost:3000/studio).
+2.  Log in using your authorized provider (Google/GitHub).
+3.  Add, edit, or delete documents under the **Experience**, **Project**, and **Education** tabs.
+4.  Hit **Publish**. The frontend uses dynamic GROQ queries to instantly fetch and render the new data.
+
+## 🎨 Design System
+
+The UI relies on a dark-mode-first color palette defined in `globals.css`:
+
+  - `--color-obsidian`: Deep background `#0A0A0A`
+  - `--color-snow`: Primary text `#FFFFFF`
+  - `--color-electric-cyan`: Primary accent `#00F0FF`
+
+## 📄 License
+
+Designed and developed by Alyasar Jabbarli. All rights reserved.
+</file>
+
+<file path="src/actions/contact.ts">
+"use server";
+
+import { z } from "zod";
+import { Resend } from "resend";
+
+// Initialize the Resend client
+const resend = new Resend(process.env.RESEND_API_KEY);
+
+const contactSchema = z.object({
+  name: z.string().min(2, { message: "Name must be at least 2 characters." }),
+  email: z.string().email({ message: "Please enter a valid email address." }),
+  message: z.string().min(10, { message: "Message must be at least 10 characters long." }),
+});
+
+export async function sendContactMessage(prevState: any, formData: FormData) {
+  const rawData = {
+    name: formData.get("name"),
+    email: formData.get("email"),
+    message: formData.get("message"),
+  };
+
+  const validatedData = contactSchema.safeParse(rawData);
+
+  if (!validatedData.success) {
+    return {
+      success: false,
+      errors: validatedData.error.flatten().fieldErrors,
+      message: "Please fix the errors below.",
+    };
+  }
+
+  try {
+    // Send the actual email
+    await resend.emails.send({
+      from: "Portfolio <onboarding@resend.dev>", // Resend's default testing address
+      to: "alyasar.jabbarli@gmail.com", // This MUST be the email you used to sign up for Resend
+      replyTo: validatedData.data.email, // This allows you to just hit "Reply" in your Gmail app
+      subject: `New Portfolio Message from ${validatedData.data.name}`,
+      text: `
+Name: ${validatedData.data.name}
+Email: ${validatedData.data.email}
+
+Message:
+${validatedData.data.message}
+      `,
+    });
+
+    return {
+      success: true,
+      message: "Transmission successful. I'll get back to you shortly.",
+      errors: null,
+    };
+  } catch (error) {
+    console.error("Resend Error:", error);
+    return {
+      success: false,
+      message: "Failed to send the message. Please try again or email me directly.",
+      errors: null,
+    };
+  }
+}
+</file>
+
+<file path="src/components/BentoGrid.tsx">
+"use client";
+
+import { motion } from "framer-motion";
+
+
+export const ExperienceCard = ({ company, role, metric }: any) => (
+    <motion.div 
+      whileHover={{ y: -5 }}
+      className="p-6 rounded-3xl bg-snow/5 border border-snow/10 backdrop-blur-md transition-all hover:border-electricCyan/50"
+    >
+      <h3 className="text-xl font-bold text-snow">{company}</h3>
+      <p className="text-electricCyan text-sm font-mono mb-4">{role}</p>
+      <div className="text-gray-400 text-sm italic">
+         ⚡ {metric}
+      </div>
+    </motion.div>
+  );
+</file>
+
+<file path="src/sanity/schemaTypes/index.ts">
+import { type SchemaTypeDefinition } from 'sanity'
+import { experienceType } from './experienceType'
+import { projectType } from './projectType'
+import { educationType } from './educationType'
+
+export const schema: { types: SchemaTypeDefinition[] } = {
+  types: [experienceType, projectType, educationType],
+}
+</file>
+
+<file path="src/app/globals.css">
+/* src/app/globals.css */
+@import "tailwindcss";
+
+@theme {
+  /* Brand Colors */
+  --color-obsidian: #050505;
+  --color-electric-cyan: #00F0FF;
+  --color-deep-slate: #1A1A1B;
+  --color-snow: #F5F5F7;
+
+  /* Custom Animations */
+  --animate-neural-pulse: pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-obsidian);
+    color: var(--color-snow);
+    -webkit-font-smoothing: antialiased;
+  }
+}
+</file>
+
+<file path="src/components/education/EducationTimeline.tsx">
+"use client";
+
+import { motion } from "framer-motion";
+import { GraduationCap, Award, Code } from "lucide-react";
+import MaskedText from "../ui/MaskedText";
+
+export interface EducationItem {
+  _id: string;
+  title: string;
+  institution: string;
+  location: string;
+  date: string;
+  highlight: string;
+  iconName: string;
+}
+
+// Map the string from Sanity to the actual Lucide component
+const iconMap: Record<string, any> = {
+  GraduationCap: GraduationCap,
+  Award: Award,
+  Code: Code,
+};
+
+export default function EducationTimeline({ items }: { items: EducationItem[] }) {
+  return (
+    <section id="education" className="py-24 px-4 max-w-4xl mx-auto w-full relative z-10">
+      <div className="mb-16 text-center">
+        <MaskedText
+          text="Academic Rigor"
+          highlightLastWord={true} // Restores the white/cyan split
+          className="text-4xl md:text-5xl font-bold tracking-tight justify-center text-[var(--color-snow)] mb-4"
+        />
+        <p className="text-gray-400 font-light">
+          Formal education, specialized training, and recognized honors.
+        </p>
+      </div>
+
+      <div className="relative">
+        <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-px bg-[var(--color-snow)]/10 -translate-x-1/2" />
+
+        <div className="space-y-12">
+          {items.map((item, index) => {
+            const isEven = index % 2 === 0;
+            const Icon = iconMap[item.iconName] || GraduationCap; // Default fallback
+
+            return (
+              <div key={item._id} className={`relative flex flex-col md:flex-row items-start md:items-center gap-8 ${isEven ? 'md:flex-row-reverse' : ''}`}>
+
+                <motion.div
+                  initial={{ scale: 0, opacity: 0 }}
+                  whileInView={{ scale: 1, opacity: 1 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.4, delay: 0.2 }}
+                  className="absolute left-8 md:left-1/2 w-12 h-12 rounded-full bg-[var(--color-obsidian)] border-2 border-[var(--color-electric-cyan)] flex items-center justify-center -translate-x-1/2 z-10 shadow-[0_0_15px_rgba(0,240,255,0.2)]"
+                >
+                  <Icon className="w-5 h-5 text-[var(--color-electric-cyan)]" />
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, x: isEven ? 50 : -50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.5, type: "spring", stiffness: 100 }}
+                  className={`ml-20 md:ml-0 w-full md:w-[calc(50%-3rem)] p-6 rounded-2xl bg-[var(--color-snow)]/5 border border-[var(--color-snow)]/10 backdrop-blur-md group hover:border-[var(--color-electric-cyan)]/30 transition-colors ${isEven ? 'text-left md:text-right' : 'text-left'}`}
+                >
+                  <span className="inline-block px-3 py-1 mb-3 text-xs font-mono rounded-full bg-[var(--color-obsidian)] text-[var(--color-electric-cyan)] border border-[var(--color-electric-cyan)]/20">
+                    {item.date}
+                  </span>
+                  <h3 className="text-xl font-bold text-[var(--color-snow)] mb-1">
+                    {item.title}
+                  </h3>
+                  <p className="text-gray-300 font-medium mb-1">
+                    {item.institution}
+                  </p>
+                  <p className="text-gray-500 text-sm mb-4">
+                    {item.location}
+                  </p>
+                  {item.highlight && (
+                    <div className="p-3 rounded-lg bg-[var(--color-electric-cyan)]/5 border border-[var(--color-electric-cyan)]/10 flex gap-3 items-start">
+                      <Award className="w-5 h-5 text-[var(--color-electric-cyan)] shrink-0 mt-0.5" />
+                      <p className="text-sm text-gray-300 italic text-left">
+                        {item.highlight}
+                      </p>
+                    </div>
+                  )}
+                </motion.div>
+
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+</file>
+
+<file path="src/components/canvas/DataNetwork.tsx">
+"use client";
+
+import { useRef, useState } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { Points, PointMaterial } from "@react-three/drei";
+import type { Points as ThreePoints } from "three";
+import * as random from "maath/random";
+
+function ParticleField(props: any) {
+  const ref = useRef<ThreePoints>(null);
+  
+  // FIX: 4500 is perfectly divisible by 3 (X, Y, Z for exactly 1500 particles).
+  // This prevents the incomplete vertex array that causes the NaN crash.
+  const [sphere] = useState(() => random.inSphere(new Float32Array(4500), { radius: 1.5 }));
+
+  useFrame((state, delta) => {
+    // Slowly rotate the entire data network
+    if (ref.current) {
+      ref.current.rotation.x -= delta / 10;
+      ref.current.rotation.y -= delta / 15;
+    }
+  });
+
+  return (
+    <group rotation={[0, 0, Math.PI / 4]}>
+      <Points ref={ref} positions={sphere} stride={3} frustumCulled={false} {...props}>
+        <PointMaterial
+          transparent
+          color="#00F0FF"
+          size={0.005}
+          sizeAttenuation={true}
+          depthWrite={false}
+        />
+      </Points>
+    </group>
+  );
+}
+
+export default function DataNetworkCanvas() {
+  return (
+    <div className="absolute inset-0 z-0 opacity-60 mix-blend-screen pointer-events-none">
+      <Canvas camera={{ position: [0, 0, 1] }}>
+        <ParticleField />
+      </Canvas>
+    </div>
+  );
+}
+</file>
+
+<file path="src/components/hero/NeuralHero.tsx">
+"use client";
+
+import { motion, useScroll, useTransform } from "framer-motion";
+import DataNetworkCanvas from "../canvas/DataNetwork"; // Your new 3D Canvas!
+
+export default function NeuralHero() {
+  // Bypassing the SSR hydration issue by using the global scroll
+  const { scrollY } = useScroll();
+
+  // As the user scrolls down 800 pixels, push the text down and fade it out
+  const y = useTransform(scrollY, [0, 800], ["0%", "40%"]);
+  const opacity = useTransform(scrollY, [0, 600], [1, 0]);
+
+  return (
+    <section
+      id="home"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20"
+    >
+      {/* 3D WebGL Data Network Background */}
+      <DataNetworkCanvas />
+
+      <motion.div
+        style={{ y, opacity }}
+        className="relative z-10 text-center px-4 w-full max-w-5xl mx-auto pointer-events-none"
+      >
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="inline-flex items-center gap-2 px-3 py-1 mb-8 rounded-full border border-[var(--color-electric-cyan)]/30 bg-[var(--color-electric-cyan)]/5 backdrop-blur-md"
+        >
+          <span className="w-2 h-2 rounded-full bg-[var(--color-electric-cyan)] animate-pulse" />
+          <span className="text-[var(--color-electric-cyan)] font-mono text-xs tracking-wider">
+            AVAILABLE FOR OPPORTUNITIES
+          </span>
+        </motion.div>
+
+        <motion.h1
+          className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter mb-6 text-[var(--color-snow)] pointer-events-auto"
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+        >
+          Alyasar Jabbarli
+        </motion.h1>
+
+        <motion.p
+          className="max-w-2xl mx-auto text-gray-400 text-lg md:text-xl font-light leading-relaxed mb-10 pointer-events-auto"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          Software Engineer & Data Scientist architecting modular ecosystems at <strong className="text-[var(--color-snow)] font-medium">Inci Group</strong> and pursuing a Master's at <strong className="text-[var(--color-snow)] font-medium">ELTE</strong>. Focused on high-performance, type-safe full-stack applications.
+        </motion.p>
+
+        <motion.div
+          className="flex flex-col sm:flex-row gap-4 justify-center items-center pointer-events-auto"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+        >
+          <a
+            href="#projects"
+            data-interactive="true"
+            className="px-8 py-3 bg-[var(--color-electric-cyan)] text-[var(--color-obsidian)] font-bold rounded-full hover:scale-105 transition-transform w-full sm:w-auto"
+          >
+            Explore My Work
+          </a>
+          <a
+            href="/Alyasar_Jabbarli_CV.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-6 py-3 border border-[var(--color-snow)]/20 text-[var(--color-snow)] font-semibold rounded-full hover:border-[var(--color-electric-cyan)] hover:text-[var(--color-electric-cyan)] transition-colors flex items-center gap-2"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><polyline points="7 10 12 15 17 10" /><line x1="12" x2="12" y1="15" y2="3" /></svg>
+            Download CV
+          </a>
+          <a
+            href="#contact"
+            data-interactive="true"
+            className="px-8 py-3 border border-[var(--color-snow)]/20 rounded-full hover:bg-[var(--color-snow)]/10 transition-colors w-full sm:w-auto"
+          >
+            Contact Me
+          </a>
+        </motion.div>
+      </motion.div>
+    </section>
+  );
+}
+</file>
+
+<file path="src/components/ui/MaskedText.tsx">
+"use client";
+
+import { motion } from "framer-motion";
+
+interface MaskedTextProps {
+  text: string;
+  className?: string;
+  delay?: number;
+  highlightLastWord?: boolean; // New prop to restore your dual-colors
+}
+
+export default function MaskedText({ 
+  text, 
+  className = "", 
+  delay = 0,
+  highlightLastWord = false 
+}: MaskedTextProps) {
+  // Split the text into an array of words
+  const words = text.split(" ");
+
+  const container = {
+    hidden: { opacity: 0 },
+    visible: (i = 1) => ({
+      opacity: 1,
+      transition: { staggerChildren: 0.12, delayChildren: delay * i },
+    }),
+  };
+
+  const child = {
+    visible: {
+      y: 0,
+      transition: { type: "spring" as const, damping: 12, stiffness: 100 },
+    },
+    hidden: {
+      y: "200%",
+    },
+  };
+
+  return (
+    <motion.div
+      variants={container}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-50px" }}
+      className={`flex flex-wrap gap-x-3 gap-y-1 ${className}`}
+    >
+      {words.map((word, index) => {
+        // Check if this is the final word in the array and if the highlight prop is true
+        const isLastWord = index === words.length - 1;
+        const applyHighlight = highlightLastWord && isLastWord;
+
+        return (
+          <div key={index} className="overflow-hidden pb-2 pr-1">
+            <motion.span 
+              variants={child} 
+              className={`inline-block ${applyHighlight ? "text-[var(--color-electric-cyan)]" : ""}`}
+            >
+              {word}
+            </motion.span>
+          </div>
+        );
+      })}
+    </motion.div>
+  );
+}
+</file>
+
+<file path="src/app/layout.tsx">
+import type { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
+import "./globals.css";
+import CustomCursor from "@/components/ui/CustomCursor";
+import MagneticDock from "@/components/ui/MagneticDock";
+
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+export const metadata: Metadata = {
+  title: "Alyasar Jabbarli | Software Engineer & Data Engineer",
+  description: "High-performance frontend architecture bridging the gap with machine learning and data science. Explore my technical ecosystem and shipped platforms.",
+  keywords: ["Software Engineer", "Data Engineer", "Next.js", "React", "Machine Learning", "Budapest"],
+  metadataBase: new URL("https://alyasar.netlify.app"),
+  openGraph: {
+    title: "Alyasar Jabbarli | Engineering Portfolio",
+    description: "Bridging Frontend Architecture and Data Science.",
+    url: "https://alyasar.netlify.app",
+    siteName: "Alyasar Jabbarli Portfolio",
+    images: [
+      {
+        url: "/og-image.jpg", // We will add this image in the next step
+        width: 1200,
+        height: 630,
+        alt: "Alyasar Jabbarli Portfolio Preview",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Alyasar Jabbarli | Software Engineer",
+    description: "High-performance frontend architecture and data science.",
+    images: ["/og-image.jpg"],
+  },
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en" className="dark">
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[var(--color-obsidian)] text-[var(--color-snow)]`}
+      >
+        <CustomCursor />
+        {children}
+        <MagneticDock />
+      </body>
+    </html>
+  );
+}
+</file>
+
+<file path="src/components/bento/ExperienceGrid.tsx">
+"use client";
+
+import { motion } from "framer-motion";
+import MaskedText from '../ui/MaskedText'
+// Define the exact shape of the data coming from Sanity
+export interface Experience {
+  _id: string;
+  company: string;
+  role: string;
+  date: string;
+  highlights: string[];
+  colSpan: string;
+  rowSpan: string;
+}
+
+export default function ExperienceGrid({ experiences }: { experiences: Experience[] }) {
+  // Fallback styling if no custom span is provided in the CMS
+  const getGridSpan = (col: string, row: string) => {
+    const colClass = col || 'md:col-span-1';
+    const rowClass = row || 'md:row-span-1';
+    return `${colClass} ${rowClass}`;
+  };
+  // Add this inside the ExperienceGrid component
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    e.currentTarget.style.setProperty("--mouse-x", `${x}px`);
+    e.currentTarget.style.setProperty("--mouse-y", `${y}px`);
+  };
+  return (
+    <section className="py-20 px-4 max-w-6xl mx-auto">
+      <div className="mb-12">
+        <MaskedText
+            text="Engineering Impact"
+            highlightLastWord={true} // Restores the white/cyan split
+            className="text-4xl md:text-5xl font-bold tracking-tight text-[var(--color-snow)] mb-4"
+          />
+        <p className="text-gray-400 font-light">
+          Metrics-driven development and scalable architectures.
+        </p>
+      </div>
+
+      {experiences.length === 0 ? (
+        <div className="text-gray-500 border border-dashed border-gray-700 p-8 rounded-2xl text-center">
+          No experience data found. Please add content in the Sanity Studio.
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[250px]">
+          {experiences.map((item, index) => (
+            <motion.div
+              key={item._id}
+              onMouseMove={handleMouseMove} // <-- Attach the tracker here
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
+              className={`relative group p-8 rounded-3xl bg-[var(--color-snow)]/5 border border-[var(--color-snow)]/10 backdrop-blur-md overflow-hidden flex flex-col justify-between ${getGridSpan(item.colSpan, item.rowSpan)} transition-colors`}
+            >
+              {/* The dynamic spotlight gradient */}
+              <div
+                className="pointer-events-none absolute -inset-px rounded-3xl opacity-0 transition duration-300 group-hover:opacity-100 z-0"
+                style={{
+                  background: "radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(0,240,255,0.15), transparent 40%)"
+                }}
+              />
+
+              {/* Add relative z-10 to your content to keep it above the spotlight */}
+              <div className="relative z-10">
+                <span className="text-xs font-mono text-gray-500 block mb-2">{item.date}</span>
+                <h3 className="text-2xl font-bold text-[var(--color-snow)] group-hover:text-[var(--color-electric-cyan)] transition-colors">{item.company}</h3>
+                <p className="text-[var(--color-electric-cyan)] font-medium text-sm mt-1">{item.role}</p>
+              </div>
+
+              {item.highlights && item.highlights.length > 0 && (
+                <ul className="relative z-10 mt-4 space-y-2">
+                  {item.highlights.map((highlight, i) => (
+                    <li key={i} className="text-sm text-gray-400 flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-electric-cyan)]/50 shrink-0" />
+                      {highlight}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </motion.div>
+          ))}
+        </div>
+      )}
+    </section>
+  );
+}
+</file>
+
+<file path="src/components/projects/ProjectsLab.tsx">
+"use client";
+
+import { motion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
+import MaskedText from "../ui/MaskedText";
+
+export interface Project {
+  _id: string;
+  title: string;
+  description: string;
+  tech: string[];
+  link: string;
+  github: string;
+}
+
+const GithubIcon = ({ className }: { className?: string }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.24c3-.34 6-1.53 6-6.76a5.2 5.2 0 0 0-1.39-3.5 5 5 0 0 0-.12-3.4s-1.12-.36-3.66 1.7a12.08 12.08 0 0 0-6.6 0c-2.54-2.06-3.66-1.7-3.66-1.7a5 5 0 0 0-.12 3.4A5.2 5.2 0 0 0 3 12.01c0 5.23 3 6.42 6 6.76-.7.2-1.25.8-1.4 1.84-.8.3-2.8.9-4-1.1-.3-.6-1-1-1-1-.8-.2-.1-.2-.1-.2 1.2 0 1.6.8 1.6.8 1 1.6 2.6 1.3 3.3 1 .1-.9.5-1.5 1-1.8V22"></path>
+  </svg>
+);
+
+export default function ProjectsLab({ projects }: { projects: Project[] }) {
+  return (
+    <section id="projects" className="py-24 px-4 max-w-6xl mx-auto w-full relative z-10">
+      <div className="mb-16 flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div>
+          <MaskedText
+            text="The Lab"
+            highlightLastWord={true} // Restores the white/cyan split
+            className="text-4xl md:text-5xl font-bold tracking-tight text-[var(--color-snow)] mb-4"
+          />
+          <p className="text-gray-400 font-light max-w-xl">
+            Where frontend architecture meets data science...
+          </p>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {projects.map((project, index) => (
+          <motion.div
+            key={project._id}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.5, delay: index * 0.15 }}
+            whileHover={{ y: -8 }}
+            className="group relative flex flex-col justify-between p-8 rounded-3xl bg-[var(--color-snow)]/5 border border-[var(--color-snow)]/10 backdrop-blur-sm overflow-hidden transition-all hover:border-[var(--color-electric-cyan)]/50 hover:bg-[var(--color-snow)]/10"
+          >
+            <div className="absolute -top-24 -right-24 w-48 h-48 bg-[var(--color-electric-cyan)]/20 rounded-full blur-[80px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+
+            <div className="relative z-10 mb-8">
+              <h3 className="text-2xl font-bold text-[var(--color-snow)] mb-3 group-hover:text-[var(--color-electric-cyan)] transition-colors">
+                {project.title}
+              </h3>
+              <p className="text-gray-400 text-sm leading-relaxed">
+                {project.description}
+              </p>
+            </div>
+
+            <div className="relative z-10 flex flex-col gap-6 mt-auto">
+              {project.tech && (
+                <div className="flex flex-wrap gap-2">
+                  {project.tech.map((t) => (
+                    <span key={t} className="px-3 py-1 text-xs font-mono rounded-full bg-[var(--color-obsidian)] text-[var(--color-snow)] border border-[var(--color-snow)]/10 group-hover:border-[var(--color-electric-cyan)]/30 transition-colors">
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              )}
+
+              <div className="flex items-center gap-4 pt-4 border-t border-[var(--color-snow)]/10">
+                {project.github && (
+                  <a href={project.github} className="text-gray-400 hover:text-[var(--color-snow)] transition-colors" data-interactive="true">
+                    <GithubIcon className="w-5 h-5" />
+                  </a>
+                )}
+                {project.link && (
+                  <a href={project.link} className="text-gray-400 hover:text-[var(--color-snow)] transition-colors ml-auto flex items-center gap-1 text-sm font-medium" data-interactive="true">
+                    Live Demo <ArrowUpRight className="w-4 h-4" />
+                  </a>
+                )}
+              </div>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+    </section>
+  );
+}
+</file>
+
+<file path="src/components/contact/ContactSection.tsx">
+"use client";
+
+import { motion } from "framer-motion";
+import { Mail, Phone, Send, CheckCircle2 } from "lucide-react"; 
+import { useState, useActionState } from "react";
+import MaskedText from "../ui/MaskedText";
+import { sendContactMessage } from "@/actions/contact";
+import SubmitButton from "./SubmitButton";
+
+const GithubIcon = ({ className }: { className?: string }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.24c3-.34 6-1.53 6-6.76a5.2 5.2 0 0 0-1.39-3.5 5 5 0 0 0-.12-3.4s-1.12-.36-3.66 1.7a12.08 12.08 0 0 0-6.6 0c-2.54-2.06-3.66-1.7-3.66-1.7a5 5 0 0 0-.12 3.4A5.2 5.2 0 0 0 3 12.01c0 5.23 3 6.42 6 6.76-.7.2-1.25.8-1.4 1.84-.8.3-2.8.9-4-1.1-.3-.6-1-1-1-1-.8-.2-.1-.2-.1-.2 1.2 0 1.6.8 1.6.8 1 1.6 2.6 1.3 3.3 1 .1-.9.5-1.5 1-1.8V22"></path>
+  </svg>
+);
+
+const LinkedinIcon = ({ className }: { className?: string }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+    <rect width="4" height="12" x="2" y="9"></rect>
+    <circle cx="4" cy="4" r="2"></circle>
+  </svg>
+);
+
+export default function ContactSection() {
+  const [showPhone, setShowPhone] = useState(false);
+  const [state, formAction] = useActionState(sendContactMessage, null);
+
+  return (
+    <section id="contact" className="py-24 px-4 max-w-6xl mx-auto w-full relative z-10">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+
+        {/* Left Side: Contact Info (Untouched) */}
+        <motion.div
+          initial={{ opacity: 0, x: -30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <MaskedText
+            text="Let's Connect"
+            highlightLastWord={true}
+            className="text-4xl md:text-5xl font-bold tracking-tight text-[var(--color-snow)] mb-4"
+          />
+          <p className="text-gray-400 font-light mb-10 max-w-md leading-relaxed">
+            I'm currently open to new opportunities. Whether you have a question about my stack or just want to discuss high-performance architecture, my inbox is open.
+          </p>
+
+          <div className="space-y-6">
+            <a href="mailto:alyasar.jabbarli@gmail.com" className="flex items-center gap-4 text-gray-400 hover:text-[var(--color-electric-cyan)] transition-colors group" data-interactive="true">
+              <div className="w-12 h-12 rounded-full bg-[var(--color-snow)]/5 border border-[var(--color-snow)]/10 flex items-center justify-center group-hover:border-[var(--color-electric-cyan)]/30 transition-colors">
+                <Mail className="w-5 h-5" />
+              </div>
+              <span className="font-mono text-sm">alyasar.jabbarli@gmail.com</span>
+            </a>
+
+            <div className="flex items-center gap-4 text-gray-400 hover:text-[var(--color-electric-cyan)] transition-colors group" data-interactive="true">
+              <div className="w-12 h-12 rounded-full bg-[var(--color-snow)]/5 border border-[var(--color-snow)]/10 flex items-center justify-center group-hover:border-[var(--color-electric-cyan)]/30 transition-colors">
+                <Phone className="w-5 h-5" />
+              </div>
+              <div className="text-gray-400">
+                {showPhone ? (
+                  <a href="tel:+36703604522" className="text-[var(--color-electric-cyan)] hover:underline">
+                    +36 70 360 45 22
+                  </a>
+                ) : (
+                  <button
+                    onClick={() => setShowPhone(true)}
+                    className="text-sm px-3 py-1 border border-[var(--color-snow)]/20 rounded-full hover:border-[var(--color-electric-cyan)] transition-colors"
+                  >
+                    Click to reveal phone number
+                  </button>
+                )}
+              </div>            
+            </div>
+
+            <div className="flex gap-4 pt-4 border-t border-[var(--color-snow)]/10 mt-8 max-w-xs">
+              <a href="https://www.linkedin.com/in/alyasar-jabbarli-813060215/" target="_blank" rel="noreferrer" className="w-12 h-12 rounded-full bg-[var(--color-snow)]/5 border border-[var(--color-snow)]/10 flex items-center justify-center text-gray-400 hover:text-[var(--color-snow)] hover:border-[var(--color-snow)]/30 transition-all" data-interactive="true">
+                <LinkedinIcon className="w-5 h-5" />
+              </a>
+              <a href="https://github.com/AlyasarJabbarli" target="_blank" rel="noreferrer" className="w-12 h-12 rounded-full bg-[var(--color-snow)]/5 border border-[var(--color-snow)]/10 flex items-center justify-center text-gray-400 hover:text-[var(--color-snow)] hover:border-[var(--color-snow)]/30 transition-all" data-interactive="true">
+                <GithubIcon className="w-5 h-5" />
+              </a>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Right Side: Server Action Form */}
+        <motion.div
+          initial={{ opacity: 0, x: 30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          {state?.success ? (
+            <div className="p-8 rounded-3xl bg-[var(--color-snow)]/5 border border-green-500/30 backdrop-blur-md flex flex-col items-center justify-center text-center h-full min-h-[400px]">
+              <div className="w-16 h-16 rounded-full bg-green-500/10 flex items-center justify-center mb-6 text-green-400">
+                <CheckCircle2 className="w-8 h-8" />
+              </div>
+              <h3 className="text-2xl font-bold text-[var(--color-snow)] mb-2">Transmission Successful</h3>
+              <p className="text-gray-400 max-w-xs">{state.message}</p>
+            </div>
+          ) : (
+            <form action={formAction} className="p-8 rounded-3xl bg-[var(--color-snow)]/5 border border-[var(--color-snow)]/10 backdrop-blur-md flex flex-col gap-6">
+              <div className="flex flex-col gap-2">
+                <label htmlFor="name" className="text-xs font-mono text-gray-500 uppercase tracking-wider">Name</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name" // Required for FormData
+                  className="w-full bg-transparent border-b border-[var(--color-snow)]/20 px-0 py-2 text-[var(--color-snow)] placeholder:text-gray-600 focus:outline-none focus:border-[var(--color-electric-cyan)] transition-colors"
+                  placeholder="John Doe"
+                />
+                {state?.errors?.name && <p className="text-red-400 text-xs mt-1">{state.errors.name[0]}</p>}
+              </div>
+
+              <div className="flex flex-col gap-2">
+                <label htmlFor="email" className="text-xs font-mono text-gray-500 uppercase tracking-wider">Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email" // Required for FormData
+                  className="w-full bg-transparent border-b border-[var(--color-snow)]/20 px-0 py-2 text-[var(--color-snow)] placeholder:text-gray-600 focus:outline-none focus:border-[var(--color-electric-cyan)] transition-colors"
+                  placeholder="john@example.com"
+                />
+                {state?.errors?.email && <p className="text-red-400 text-xs mt-1">{state.errors.email[0]}</p>}
+              </div>
+
+              <div className="flex flex-col gap-2">
+                <label htmlFor="message" className="text-xs font-mono text-gray-500 uppercase tracking-wider">Message</label>
+                <textarea
+                  id="message"
+                  name="message" // Required for FormData
+                  rows={4}
+                  className="w-full bg-transparent border-b border-[var(--color-snow)]/20 px-0 py-2 text-[var(--color-snow)] placeholder:text-gray-600 focus:outline-none focus:border-[var(--color-electric-cyan)] transition-colors resize-none"
+                  placeholder="Let's talk about..."
+                />
+                {state?.errors?.message && <p className="text-red-400 text-xs mt-1">{state.errors.message[0]}</p>}
+              </div>
+
+              {state?.message && !state?.success && (
+                <p className="text-red-400 text-sm text-center">{state.message}</p>
+              )}
+
+              <SubmitButton />
+            </form>
+          )}
+        </motion.div>
+
+      </div>
+    </section>
+  );
+}
+</file>
+
+<file path="package.json">
+{
+  "name": "alyasar-portfolio",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "@react-three/drei": "^10.7.7",
+    "@react-three/fiber": "^9.5.0",
+    "@sanity/image-url": "^2.1.1",
+    "@sanity/vision": "^5.18.0",
+    "@types/three": "^0.183.1",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "d3-drag": "^3.0.0",
+    "d3-force": "^3.0.0",
+    "d3-selection": "^3.0.0",
+    "framer-motion": "^12.38.0",
+    "lucide-react": "^1.7.0",
+    "next": "16.2.1",
+    "next-sanity": "^12.2.1",
+    "radix-ui": "^1.4.3",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "resend": "^6.10.0",
+    "sanity": "^5.18.0",
+    "shadcn": "^4.1.1",
+    "styled-components": "^6.3.12",
+    "tailwind-merge": "^3.5.0",
+    "three": "^0.183.2",
+    "tw-animate-css": "^1.4.0",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/d3-drag": "^3.0.7",
+    "@types/d3-force": "^3.0.10",
+    "@types/d3-selection": "^3.0.11",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "babel-plugin-react-compiler": "1.0.0",
+    "eslint": "^9",
+    "eslint-config-next": "16.2.1",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}
+</file>
+
+<file path="src/app/page.tsx">
+import { client } from "@/sanity/lib/client";
+import NeuralHero from "@/components/hero/NeuralHero";
+import ExperienceGrid, { Experience } from "@/components/bento/ExperienceGrid";
+import ProjectsLab, { Project } from "@/components/projects/ProjectsLab";
+import EducationTimeline, { EducationItem } from "@/components/education/EducationTimeline";
+import ContactSection from "@/components/contact/ContactSection";
+import SkillNetwork from "@/components/skills/SkillNetwork";
+
+const EXPERIENCE_QUERY = `*[_type == "experience"] | order(order asc) { _id, company, role, date, highlights, colSpan, rowSpan }`;
+const PROJECTS_QUERY = `*[_type == "project"] | order(order asc) { _id, title, description, tech, link, github }`;
+const EDUCATION_QUERY = `*[_type == "education"] | order(order asc) { _id, title, institution, location, date, highlight, iconName }`;
+
+export default async function Home() {
+  // Fetch everything in parallel for maximum speed
+  const [experiences, projects, educationItems] = await Promise.all([
+    client.fetch<Experience[]>(EXPERIENCE_QUERY, {}, { next: { revalidate: 3600 } }),
+    client.fetch<Project[]>(PROJECTS_QUERY, {}, { next: { revalidate: 3600 } }),
+    client.fetch<EducationItem[]>(EDUCATION_QUERY, {}, { next: { revalidate: 3600 } })
+  ]);
+
+  return (
+    <main className="relative w-full flex flex-col items-center justify-center">
+      <NeuralHero />
+
+      <div id="experience" className="w-full relative z-10 bg-[var(--color-obsidian)]">
+        <ExperienceGrid experiences={experiences} />
+      </div>
+
+      <div className="w-full relative z-10 bg-[var(--color-obsidian)] border-t border-[var(--color-snow)]/5">
+        <ProjectsLab projects={projects} />
+      </div>
+
+      <div id="education" className="w-full relative z-10 bg-[var(--color-obsidian)] border-t border-[var(--color-snow)]/5">
+        <EducationTimeline items={educationItems} />
+      </div>
+      {/* ... Experience Grid Section ... */}
+
+      <div className="w-full relative z-10 bg-[var(--color-obsidian)] border-t border-[var(--color-snow)]/5">
+        <SkillNetwork />
+      </div>
+
+      {/* ... Projects Lab Section ... */}
+      <div className="w-full relative z-10 bg-[var(--color-obsidian)] border-t border-[var(--color-snow)]/5">
+        <ContactSection />
+      </div>
+
+      <footer className="w-full py-8 text-center text-xs font-mono text-gray-600 bg-[var(--color-obsidian)] border-t border-[var(--color-snow)]/10">
+        &copy; {new Date().getFullYear()} ALYASAR JABBARLI. ALL RIGHTS RESERVED.
+      </footer>
+
+      <div className="h-32 w-full bg-[var(--color-obsidian)]" />
+    </main>
+  );
+}
+</file>
+
+</files>
