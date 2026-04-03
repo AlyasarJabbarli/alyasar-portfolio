@@ -4,11 +4,21 @@ import { streamText } from 'ai';
 export const maxDuration = 30;
 
 export async function POST(req: Request) {
+  // 1. Properly await the incoming JSON payload
   const { messages } = await req.json();
 
-  const result = await streamText({
-    // Using Google's ultra-fast, free-tier optimized Flash model
-    model: google('gemini-1.5-flash'), 
+  const normalizedMessages = messages.map((msg: any) => ({
+    role: msg.role,
+    content: msg.parts
+      ?.filter((p: any) => p.type === 'text')
+      .map((p: any) => p.text)
+      .join('') || '',
+  }));
+
+
+  // 2. In ai@latest, streamText is synchronous and handles the message array natively
+  const result = streamText({
+    model: google('gemini-2.5-flash'), 
     system: `
       You are the AI version of Alyasar Jabbarli's Portfolio. Your goal is to help recruiters and managers understand his value.
       
@@ -27,8 +37,10 @@ export async function POST(req: Request) {
       - If asked about technical experience, highlight his ability to manage 60fps animations alongside heavy data processing.
       - Keep responses concise and focused on professional impact.
     `,
-    messages,
+    messages: normalizedMessages,
   });
 
-  return result.toDataStreamResponse();
-}
+  // 3. This method now perfectly exists and streams instantly
+  return result.toUIMessageStreamResponse();
+
+  }

@@ -1,20 +1,42 @@
 "use client";
 
-import { useChat } from 'ai/react';
+import { useChat } from '@ai-sdk/react';
+import { DefaultChatTransport } from 'ai';
 import { useState, useRef, useEffect } from 'react';
-import { MessageSquare, X, Send, Bot, User, Loader2 } from 'lucide-react';
+import { MessageSquare, X, Send, Bot, Loader2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function AIChat() {
   const [isOpen, setIsOpen] = useState(false);
-  const { messages, input, handleInputChange, handleSubmit, isLoading } = useChat();
   const scrollRef = useRef<HTMLDivElement>(null);
+  
+  // NEW v5+ standard: Manual input state
+  const [input, setInput] = useState('');
 
+  // NEW v5+ standard: useChat with transport architecture
+  const { messages, sendMessage, status } = useChat({
+    transport: new DefaultChatTransport({
+      api: '/api/chat',
+    }),
+  });
+
+  // Auto-scroll to bottom
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
   }, [messages]);
+
+  // NEW v5+ standard: Custom submit handler
+  const handleFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!input.trim() || status === 'submitted' || status === 'streaming') return;
+    
+    sendMessage({ text: input });
+    setInput(''); // Clear input after sending
+  };
+
+  const isGenerating = status === 'submitted' || status === 'streaming';
 
   return (
     <div className="fixed bottom-24 right-6 z-[100] font-sans">
@@ -57,11 +79,14 @@ export default function AIChat() {
                       ? 'bg-[var(--color-electric-cyan)] text-black font-medium' 
                       : 'bg-[var(--color-snow)]/5 text-gray-200 border border-[var(--color-snow)]/10'
                   }`}>
-                    {m.content}
+                    {/* Render message parts natively for the new v5 structure */}
+                    {m.parts?.map((part, index) => 
+                      part.type === 'text' ? <span key={index}>{part.text}</span> : null
+                    )}
                   </div>
                 </div>
               ))}
-              {isLoading && (
+              {isGenerating && (
                 <div className="flex justify-start">
                   <div className="bg-[var(--color-snow)]/5 p-3 rounded-xl">
                     <Loader2 className="w-4 h-4 animate-spin text-[var(--color-electric-cyan)]" />
@@ -71,17 +96,18 @@ export default function AIChat() {
             </div>
 
             {/* Input */}
-            <form onSubmit={handleSubmit} className="p-4 border-t border-[var(--color-snow)]/10 bg-[var(--color-snow)]/5">
+            <form onSubmit={handleFormSubmit} className="p-4 border-t border-[var(--color-snow)]/10 bg-[var(--color-snow)]/5">
               <div className="relative">
                 <input
                   value={input}
-                  onChange={handleInputChange}
+                  onChange={(e) => setInput(e.target.value)}
                   placeholder="Type a message..."
-                  className="w-full bg-[var(--color-obsidian)] border border-[var(--color-snow)]/20 rounded-lg py-2 pl-4 pr-10 text-sm text-[var(--color-snow)] focus:outline-none focus:border-[var(--color-electric-cyan)] transition-colors"
+                  disabled={isGenerating}
+                  className="w-full bg-[var(--color-obsidian)] border border-[var(--color-snow)]/20 rounded-lg py-2 pl-4 pr-10 text-sm text-[var(--color-snow)] focus:outline-none focus:border-[var(--color-electric-cyan)] transition-colors disabled:opacity-50"
                 />
                 <button 
                   type="submit" 
-                  disabled={isLoading || !input}
+                  disabled={isGenerating || !input.trim()}
                   className="absolute right-2 top-1.5 text-gray-400 hover:text-[var(--color-electric-cyan)] transition-colors disabled:opacity-0"
                 >
                   <Send className="w-5 h-5" />
