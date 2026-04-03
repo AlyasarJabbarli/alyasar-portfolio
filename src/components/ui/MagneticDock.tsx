@@ -1,12 +1,29 @@
 "use client";
 
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import {
+  motion,
+  useMotionValue,
+  useSpring,
+  useTransform,
+  type MotionValue,
+} from "framer-motion";
 import { useRef } from "react";
 import { Home, Briefcase, Code2, GraduationCap, Mail } from "lucide-react";
-import Link from "next/link";
 
 // Reusable physics-driven icon component
-function DockIcon({ mouseX, icon: Icon, href, label }: { mouseX: any, icon: any, href: string, label: string }) {
+function DockIcon({
+  mouseX,
+  icon: Icon,
+  href,
+  label,
+  ariaLabel,
+}: {
+  mouseX: MotionValue<number>;
+  icon: typeof Home;
+  href: string;
+  label: string;
+  ariaLabel: string;
+}) {
   const ref = useRef<HTMLDivElement>(null);
 
   // Calculate the distance from the mouse to the center of the icon
@@ -20,21 +37,22 @@ function DockIcon({ mouseX, icon: Icon, href, label }: { mouseX: any, icon: any,
   const width = useSpring(widthSync, { mass: 0.1, stiffness: 150, damping: 12 });
 
   return (
-    <Link href={href}>
+    <a href={href} aria-label={ariaLabel} className="block">
       <motion.div
         ref={ref}
         style={{ width }}
         className="relative flex aspect-square items-center justify-center rounded-full bg-snow/5 border border-snow/10 text-gray-400 backdrop-blur-md transition-colors hover:text-[var(--color-electric-cyan)] hover:bg-snow/10 group"
-        data-interactive="true" // Tells our custom cursor to expand
+        data-interactive="true"
       >
-        <Icon className="w-1/2 h-1/2" />
-        
-        {/* Tooltip */}
-        <span className="absolute -top-12 scale-0 rounded-md bg-[var(--color-obsidian)] border border-[var(--color-electric-cyan)]/30 px-3 py-1 text-xs font-mono text-[var(--color-snow)] transition-all group-hover:scale-100 backdrop-blur-xl">
+        <Icon className="w-1/2 h-1/2" aria-hidden="true" />
+        <span
+          className="absolute -top-12 scale-0 rounded-md bg-[var(--color-obsidian)] border border-[var(--color-electric-cyan)]/30 px-3 py-1 text-xs font-mono text-[var(--color-snow)] transition-all group-hover:scale-100 backdrop-blur-xl"
+          aria-hidden="true"
+        >
           {label}
         </span>
       </motion.div>
-    </Link>
+    </a>
   );
 }
 
@@ -43,11 +61,36 @@ export default function MagneticDock() {
   const mouseX = useMotionValue(Infinity);
 
   const navItems = [
-    { icon: Home, label: "Home", href: "#home" },
-    { icon: Briefcase, label: "Experience", href: "#experience" },
-    { icon: Code2, label: "Projects", href: "#projects" },
-    { icon: GraduationCap, label: "Education", href: "#education" },
-    { icon: Mail, label: "Contact", href: "#contact" },
+    {
+      icon: Home,
+      label: "Home",
+      href: "#home",
+      ariaLabel: "Navigate to home section",
+    },
+    {
+      icon: Briefcase,
+      label: "Experience",
+      href: "#experience",
+      ariaLabel: "Navigate to experience section",
+    },
+    {
+      icon: Code2,
+      label: "Projects",
+      href: "#projects",
+      ariaLabel: "Navigate to projects section",
+    },
+    {
+      icon: GraduationCap,
+      label: "Education",
+      href: "#education",
+      ariaLabel: "Navigate to education section",
+    },
+    {
+      icon: Mail,
+      label: "Contact",
+      href: "#contact",
+      ariaLabel: "Navigate to contact section",
+    },
   ];
 
   return (

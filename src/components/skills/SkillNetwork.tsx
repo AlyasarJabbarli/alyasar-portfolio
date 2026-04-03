@@ -146,12 +146,19 @@ export default function SkillNetwork() {
                 </p>
             </div>
 
-            {/* Physics Container */}
+            {/* Physics Container — decorative visualization; links/lines are not exposed to AT */}
             <div
                 ref={containerRef}
                 className="relative w-full h-[500px] rounded-3xl bg-[var(--color-snow)]/5 border border-[var(--color-snow)]/10 overflow-hidden"
+                aria-hidden="true"
+                role="presentation"
             >
-                <svg ref={svgRef} className="absolute inset-0 w-full h-full pointer-events-none" />
+                <svg
+                    ref={svgRef}
+                    className="absolute inset-0 w-full h-full pointer-events-none"
+                    aria-hidden="true"
+                    role="presentation"
+                />
             </div>
         </section>
     );

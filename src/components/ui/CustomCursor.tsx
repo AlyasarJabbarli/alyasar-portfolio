@@ -1,11 +1,31 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion, useMotionValue, useSpring } from "framer-motion";
+import {
+  motion,
+  useMotionValue,
+  useReducedMotion,
+  useSpring,
+} from "framer-motion";
 
 export default function CustomCursor() {
+  const prefersReducedMotion = useReducedMotion();
+  const [mounted, setMounted] = useState(false);
+  const [pointerFine, setPointerFine] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
-  
+
+  useEffect(() => {
+    setMounted(true);
+    const mq = window.matchMedia("(pointer: fine)");
+    const sync = () => setPointerFine(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
+
+  const showCustomCursor =
+    mounted && pointerFine && prefersReducedMotion !== true;
+
   // Motion values bypass the React render cycle for performance
   const cursorX = useMotionValue(-100);
   const cursorY = useMotionValue(-100);
@@ -16,6 +36,7 @@ export default function CustomCursor() {
   const smoothY = useSpring(cursorY, springConfig);
 
   useEffect(() => {
+    if (!showCustomCursor) return;
     const moveCursor = (e: MouseEvent) => {
       // Offset by 16px to center the 32x32px cursor on the actual pointer
       cursorX.set(e.clientX - 16); 
@@ -32,13 +53,17 @@ export default function CustomCursor() {
 
     window.addEventListener("mousemove", moveCursor);
     return () => window.removeEventListener("mousemove", moveCursor);
-  }, [cursorX, cursorY]);
+  }, [cursorX, cursorY, showCustomCursor]);
 
-  // Hide the default browser cursor completely
   useEffect(() => {
+    if (!showCustomCursor) return;
     document.body.style.cursor = "none";
-    return () => { document.body.style.cursor = "auto"; };
-  }, []);
+    return () => {
+      document.body.style.cursor = "auto";
+    };
+  }, [showCustomCursor]);
+
+  if (!showCustomCursor) return null;
 
   return (
     <motion.div

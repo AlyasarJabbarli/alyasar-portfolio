@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import CustomCursor from "@/components/ui/CustomCursor";
 import MagneticDock from "@/components/ui/MagneticDock";
+import ScrollProgress from "@/components/ui/ScrollProgress";
 
 
 const geistSans = Geist({
@@ -54,6 +55,13 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[var(--color-obsidian)] text-[var(--color-snow)]`}
       >
+        <a
+          href="#main"
+          className="sr-only skip-to-main focus:not-sr-only"
+        >
+          Skip to main content
+        </a>
+        <ScrollProgress />
         <CustomCursor />
         {children}
         <MagneticDock />

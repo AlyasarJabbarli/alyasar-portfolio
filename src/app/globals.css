@@ -12,10 +12,61 @@
   --animate-neural-pulse: pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 @layer base {
   body {
     background-color: var(--color-obsidian);
     color: var(--color-snow);
     -webkit-font-smoothing: antialiased;
   }
+}
+
+@layer utilities {
+  .skip-to-main:focus {
+    position: fixed;
+    left: 1rem;
+    top: 1rem;
+    z-index: 10002;
+    width: auto;
+    height: auto;
+    padding: 0.75rem 1rem;
+    margin: 0;
+    overflow: visible;
+    clip-path: none;
+    clip: auto;
+    white-space: nowrap;
+    background-color: var(--color-electric-cyan);
+    color: var(--color-obsidian);
+    font-weight: 600;
+    outline: 2px solid var(--color-snow);
+    outline-offset: 2px;
+  }
+}
+
+@keyframes skeleton-shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.skeleton-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.skeleton-shimmer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 240, 255, 0.08),
+    transparent
+  );
+  animation: skeleton-shimmer 1.5s ease-in-out infinite;
 }

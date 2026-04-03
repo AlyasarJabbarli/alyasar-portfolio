@@ -38,7 +38,11 @@ function ParticleField(props: any) {
 
 export default function DataNetworkCanvas() {
   return (
-    <div className="absolute inset-0 z-0 opacity-60 mix-blend-screen pointer-events-none">
+    <div
+      className="absolute inset-0 z-0 opacity-60 mix-blend-screen pointer-events-none"
+      aria-hidden="true"
+      role="presentation"
+    >
       <Canvas camera={{ position: [0, 0, 1] }}>
         <ParticleField />
       </Canvas>
