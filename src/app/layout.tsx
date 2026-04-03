@@ -4,6 +4,8 @@ import "./globals.css";
 import CustomCursor from "@/components/ui/CustomCursor";
 import MagneticDock from "@/components/ui/MagneticDock";
 import ScrollProgress from "@/components/ui/ScrollProgress";
+import AIChat from "@/components/ai/AIChat";
+
 
 
 const geistSans = Geist({
@@ -65,6 +67,7 @@ export default function RootLayout({
         <CustomCursor />
         {children}
         <MagneticDock />
+        <AIChat />
       </body>
     </html>
   );
