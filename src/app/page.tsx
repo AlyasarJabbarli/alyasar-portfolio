@@ -13,6 +13,8 @@ import {
   EducationSectionSkeleton,
 } from "@/components/ui/Skeletons";
 
+const REVALIDATE_TTL = parseInt(process.env.NEXT_REVALIDATE_TTL ?? "3600", 10);
+
 const EXPERIENCE_QUERY = `*[_type == "experience"] | order(order asc) { _id, company, role, date, highlights, colSpan, rowSpan }`;
 const PROJECTS_QUERY = `*[_type == "project"] | order(order asc) { _id, title, description, tech, link, github }`;
 const EDUCATION_QUERY = `*[_type == "education"] | order(order asc) { _id, title, institution, location, date, highlight, iconName }`;
@@ -21,7 +23,7 @@ async function ExperienceSection() {
   const experiences = await client.fetch<Experience[]>(
     EXPERIENCE_QUERY,
     {},
-    { next: { revalidate: 3600 } }
+    { next: { revalidate: REVALIDATE_TTL } }
   );
   return (
     <div id="experience" className="w-full relative z-10 bg-[var(--color-obsidian)]">
@@ -34,7 +36,7 @@ async function ProjectsSection() {
   const projects = await client.fetch<Project[]>(
     PROJECTS_QUERY,
     {},
-    { next: { revalidate: 3600 } }
+    { next: { revalidate: REVALIDATE_TTL } }
   );
   return (
     <div className="w-full relative z-10 bg-[var(--color-obsidian)] border-t border-[var(--color-snow)]/5">
@@ -47,7 +49,7 @@ async function EducationSection() {
   const educationItems = await client.fetch<EducationItem[]>(
     EDUCATION_QUERY,
     {},
-    { next: { revalidate: 3600 } }
+    { next: { revalidate: REVALIDATE_TTL } }
   );
   return (
     <div
