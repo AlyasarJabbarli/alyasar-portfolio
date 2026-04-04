@@ -1,4 +1,4 @@
-# Alyasar Jabbarli | Software Engineer & Data Scientist
+# Alyasar Jabbarli | Software Engineer & Data Engineer
 
 A high-performance, interactive personal portfolio bridging the gap between Data Science and modern Frontend Architecture. Built to handle complex WebGL graphics and D3 physics engines while maintaining perfect 60fps animations and robust SEO.
 
