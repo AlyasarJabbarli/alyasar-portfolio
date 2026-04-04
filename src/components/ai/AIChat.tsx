@@ -1,39 +1,42 @@
 "use client";
 
 import { useChat } from '@ai-sdk/react';
-import { DefaultChatTransport } from 'ai';
+import { DefaultChatTransport, isTextUIPart } from 'ai';
+import type { UIMessage } from 'ai';
 import { useState, useRef, useEffect } from 'react';
 import { MessageSquare, X, Send, Bot, Loader2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+
+const STARTER_PROMPTS = [
+  'What did Alyasar build at Inci Group?',
+  'Tell me about his ML research',
+  'Is he available for new roles?',
+];
 
 export default function AIChat() {
   const [isOpen, setIsOpen] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   
-  // NEW v5+ standard: Manual input state
   const [input, setInput] = useState('');
 
-  // NEW v5+ standard: useChat with transport architecture
   const { messages, sendMessage, status } = useChat({
     transport: new DefaultChatTransport({
       api: '/api/chat',
     }),
   });
 
-  // Auto-scroll to bottom
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
   }, [messages]);
 
-  // NEW v5+ standard: Custom submit handler
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!input.trim() || status === 'submitted' || status === 'streaming') return;
     
     sendMessage({ text: input });
-    setInput(''); // Clear input after sending
+    setInput('');
   };
 
   const isGenerating = status === 'submitted' || status === 'streaming';
@@ -48,7 +51,6 @@ export default function AIChat() {
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             className="mb-4 w-[350px] md:w-[400px] h-[500px] bg-[var(--color-obsidian)] border border-[var(--color-snow)]/10 rounded-2xl shadow-2xl flex flex-col overflow-hidden backdrop-blur-xl"
           >
-            {/* Header */}
             <div className="p-4 border-b border-[var(--color-snow)]/10 bg-[var(--color-snow)]/5 flex justify-between items-center">
               <div className="flex items-center gap-2">
                 <div className="w-8 h-8 rounded-full bg-[var(--color-electric-cyan)]/20 flex items-center justify-center">
@@ -64,24 +66,39 @@ export default function AIChat() {
               </button>
             </div>
 
-            {/* Messages */}
-            <div ref={scrollRef} className="flex-1 overflow-y-auto p-4 space-y-4 scrollbar-thin scrollbar-thumb-white/10">
+            <div
+              ref={scrollRef}
+              role="log"
+              aria-live="polite"
+              aria-label="Chat conversation"
+              className="flex-1 overflow-y-auto p-4 space-y-4 scrollbar-thin scrollbar-thumb-white/10"
+            >
               {messages.length === 0 && (
-                <div className="text-center py-10">
+                <div className="text-center py-10 space-y-4">
                   <Bot className="w-10 h-10 text-gray-600 mx-auto mb-3" />
-                  <p className="text-xs text-gray-500 px-8">"How did Alyasar reduce load times by 40% at Inci Group?"</p>
+                  <div className="flex flex-col gap-2 px-4">
+                    {STARTER_PROMPTS.map((prompt) => (
+                      <button
+                        key={prompt}
+                        type="button"
+                        onClick={() => sendMessage({ text: prompt })}
+                        className="rounded-full border border-[var(--color-electric-cyan)]/30 text-xs text-gray-400 px-3 py-1.5 hover:border-[var(--color-electric-cyan)] hover:text-[var(--color-electric-cyan)] transition-colors text-left w-full"
+                      >
+                        {prompt}
+                      </button>
+                    ))}
+                  </div>
                 </div>
               )}
-              {messages.map((m) => (
+              {messages.map((m: UIMessage) => (
                 <div key={m.id} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                   <div className={`max-w-[80%] p-3 rounded-xl text-sm ${
                     m.role === 'user' 
                       ? 'bg-[var(--color-electric-cyan)] text-black font-medium' 
                       : 'bg-[var(--color-snow)]/5 text-gray-200 border border-[var(--color-snow)]/10'
                   }`}>
-                    {/* Render message parts natively for the new v5 structure */}
                     {m.parts?.map((part, index) => 
-                      part.type === 'text' ? <span key={index}>{part.text}</span> : null
+                      isTextUIPart(part) ? <span key={index}>{part.text}</span> : null
                     )}
                   </div>
                 </div>
@@ -95,7 +112,6 @@ export default function AIChat() {
               )}
             </div>
 
-            {/* Input */}
             <form onSubmit={handleFormSubmit} className="p-4 border-t border-[var(--color-snow)]/10 bg-[var(--color-snow)]/5">
               <div className="relative">
                 <input
@@ -118,9 +134,11 @@ export default function AIChat() {
         )}
       </AnimatePresence>
 
-      {/* Toggle Button */}
       <button
+        type="button"
         onClick={() => setIsOpen(!isOpen)}
+        aria-label={isOpen ? 'Close AI chat' : 'Open AI chat'}
+        aria-expanded={isOpen}
         className="w-14 h-14 rounded-full bg-[var(--color-electric-cyan)] text-black shadow-[0_0_20px_rgba(0,240,255,0.4)] flex items-center justify-center hover:scale-110 transition-transform active:scale-95"
       >
         {isOpen ? <X className="w-6 h-6" /> : <MessageSquare className="w-6 h-6" />}
