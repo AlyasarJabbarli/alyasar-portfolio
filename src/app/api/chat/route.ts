@@ -1,24 +1,36 @@
 import { google } from '@ai-sdk/google';
 import { streamText } from 'ai';
+import type { ModelMessage } from 'ai';
 
 export const maxDuration = 30;
 
+interface MessagePart {
+  type: string;
+  text?: string;
+}
+
+interface IncomingMessage {
+  role: 'user' | 'assistant';
+  parts?: MessagePart[];
+  content?: string;
+}
+
 export async function POST(req: Request) {
-  // 1. Properly await the incoming JSON payload
-  const { messages } = await req.json();
+  const { messages } = (await req.json()) as { messages: IncomingMessage[] };
 
-  const normalizedMessages = messages.map((msg: any) => ({
-    role: msg.role,
-    content: msg.parts
-      ?.filter((p: any) => p.type === 'text')
-      .map((p: any) => p.text)
-      .join('') || '',
-  }));
+  const normalizedMessages: ModelMessage[] = messages.map((msg) => {
+    const content =
+      msg.parts
+        ?.filter((p): p is MessagePart & { type: 'text' } => p.type === 'text')
+        .map((p) => p.text ?? '')
+        .join('') ||
+      msg.content ||
+      '';
+    return { role: msg.role, content };
+  });
 
-
-  // 2. In ai@latest, streamText is synchronous and handles the message array natively
   const result = streamText({
-    model: google('gemini-2.5-flash'), 
+    model: google('gemini-2.5-flash'),
     system: `
       You are the AI version of Alyasar Jabbarli's Portfolio. Your goal is to help recruiters and managers understand his value.
       
@@ -40,7 +52,5 @@ export async function POST(req: Request) {
     messages: normalizedMessages,
   });
 
-  // 3. This method now perfectly exists and streams instantly
   return result.toUIMessageStreamResponse();
-
-  }
+}
