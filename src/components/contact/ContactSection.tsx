@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Mail, Phone, Send, CheckCircle2 } from "lucide-react"; 
+import { Mail, Phone, CheckCircle2 } from "lucide-react"; 
 import { useState, useActionState } from "react";
 import MaskedText from "../ui/MaskedText";
 import { sendContactMessage } from "@/actions/contact";
@@ -9,7 +9,7 @@ import SubmitButton from "./SubmitButton";
 
 const GithubIcon = ({ className }: { className?: string }) => (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-    <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.24c3-.34 6-1.53 6-6.76a5.2 5.2 0 0 0-1.39-3.5 5 5 0 0 0-.12-3.4s-1.12-.36-3.66 1.7a12.08 12.08 0 0 0-6.6 0c-2.54-2.06-3.66-1.7-3.66-1.7a5 5 0 0 0-.12 3.4A5.2 5.2 0 0 0 3 12.01c0 5.23 3 6.42 6 6.76-.7.2-1.25.8-1.4 1.84-.8.3-2.8.9-4-1.1-.3-.6-1-1-1-1-.8-.2-.1-.2-.1-.2 1.2 0 1.6.8 1.6.8 1 1.6 2.6 1.3 3.3 1 .1-.9.5-1.5 1-1.8V22"></path>
+    <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.24c3-.34 6-1.53 6-6.76a5.2 5.2 0 0 0-1.39-3.5 5 5 0 0 0-.12-3.4s-1.12-.36-3.66 1.7a12.08 12.08 0 0 0-6.6 0c-2.54-2.06-3.66-1.7-3.66-1.7a5 5 0 0 0-.12 3.4A5.2 5.2 0 0 0 3 12.01c0 5.23 3 6.42 6 6.76-.7.2-1.25.8-1.4 1.84-.8.3-2.8.9-4-1.1-.3-.6-1-1-1-.8-.2-.1-.2-.1-.2 1.2 0 1.6.8 1.6.8 1 1.6 2.6 1.3 3.3 1 .1-.9.5-1.5 1-1.8V22"></path>
   </svg>
 );
 
@@ -23,13 +23,13 @@ const LinkedinIcon = ({ className }: { className?: string }) => (
 
 export default function ContactSection() {
   const [showPhone, setShowPhone] = useState(false);
+  const [formValues, setFormValues] = useState({ name: '', email: '', message: '' });
   const [state, formAction] = useActionState(sendContactMessage, null);
 
   return (
     <section id="contact" className="py-24 px-4 max-w-6xl mx-auto w-full relative z-10">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
 
-        {/* Left Side: Contact Info (Untouched) */}
         <motion.div
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -64,7 +64,9 @@ export default function ContactSection() {
                   </a>
                 ) : (
                   <button
+                    type="button"
                     onClick={() => setShowPhone(true)}
+                    aria-label="Reveal phone number"
                     className="text-sm px-3 py-1 border border-[var(--color-snow)]/20 rounded-full hover:border-[var(--color-electric-cyan)] transition-colors"
                   >
                     Click to reveal phone number
@@ -84,7 +86,6 @@ export default function ContactSection() {
           </div>
         </motion.div>
 
-        {/* Right Side: Server Action Form */}
         <motion.div
           initial={{ opacity: 0, x: 30 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -106,11 +107,19 @@ export default function ContactSection() {
                 <input
                   type="text"
                   id="name"
-                  name="name" // Required for FormData
+                  name="name"
+                  value={formValues.name}
+                  onChange={(e) => setFormValues((prev) => ({ ...prev, name: e.target.value }))}
+                  aria-invalid={!!state?.errors?.name}
+                  aria-describedby={state?.errors?.name ? 'name-error' : undefined}
                   className="w-full bg-transparent border-b border-[var(--color-snow)]/20 px-0 py-2 text-[var(--color-snow)] placeholder:text-gray-600 focus:outline-none focus:border-[var(--color-electric-cyan)] transition-colors"
                   placeholder="John Doe"
                 />
-                {state?.errors?.name && <p className="text-red-400 text-xs mt-1">{state.errors.name[0]}</p>}
+                {state?.errors?.name && (
+                  <p id="name-error" className="text-red-400 text-xs mt-1" role="alert">
+                    {state.errors.name[0]}
+                  </p>
+                )}
               </div>
 
               <div className="flex flex-col gap-2">
@@ -118,23 +127,39 @@ export default function ContactSection() {
                 <input
                   type="email"
                   id="email"
-                  name="email" // Required for FormData
+                  name="email"
+                  value={formValues.email}
+                  onChange={(e) => setFormValues((prev) => ({ ...prev, email: e.target.value }))}
+                  aria-invalid={!!state?.errors?.email}
+                  aria-describedby={state?.errors?.email ? 'email-error' : undefined}
                   className="w-full bg-transparent border-b border-[var(--color-snow)]/20 px-0 py-2 text-[var(--color-snow)] placeholder:text-gray-600 focus:outline-none focus:border-[var(--color-electric-cyan)] transition-colors"
                   placeholder="john@example.com"
                 />
-                {state?.errors?.email && <p className="text-red-400 text-xs mt-1">{state.errors.email[0]}</p>}
+                {state?.errors?.email && (
+                  <p id="email-error" className="text-red-400 text-xs mt-1" role="alert">
+                    {state.errors.email[0]}
+                  </p>
+                )}
               </div>
 
               <div className="flex flex-col gap-2">
                 <label htmlFor="message" className="text-xs font-mono text-gray-500 uppercase tracking-wider">Message</label>
                 <textarea
                   id="message"
-                  name="message" // Required for FormData
+                  name="message"
                   rows={4}
+                  value={formValues.message}
+                  onChange={(e) => setFormValues((prev) => ({ ...prev, message: e.target.value }))}
+                  aria-invalid={!!state?.errors?.message}
+                  aria-describedby={state?.errors?.message ? 'message-error' : undefined}
                   className="w-full bg-transparent border-b border-[var(--color-snow)]/20 px-0 py-2 text-[var(--color-snow)] placeholder:text-gray-600 focus:outline-none focus:border-[var(--color-electric-cyan)] transition-colors resize-none"
                   placeholder="Let's talk about..."
                 />
-                {state?.errors?.message && <p className="text-red-400 text-xs mt-1">{state.errors.message[0]}</p>}
+                {state?.errors?.message && (
+                  <p id="message-error" className="text-red-400 text-xs mt-1" role="alert">
+                    {state.errors.message[0]}
+                  </p>
+                )}
               </div>
 
               {state?.message && !state?.success && (
