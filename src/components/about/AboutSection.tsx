@@ -4,10 +4,10 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 
 const MOCK_COMMANDS = [
-  '$ git commit -m "feat: neural embeddings pipeline"',
-  "$ npm run analyze --bundle-size-reduced",
-  '$ curl -s api.example.com/embeddings | jq ".dimensions"',
-  "$ python -m pytest tests/ml/ -q",
+  '$ git commit -m "feat: bundle perf — Inci dashboard"',
+  "$ npx next build --experimental-build-mode compile",
+  '$ python -c "from attacks import pgd; run_eval(model)"',
+  "$ pytest tests/ml/ -q --tb=short",
 ];
 
 function TerminalWidget() {
@@ -70,18 +70,16 @@ export default function AboutSection() {
     >
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-start">
         <div className="rounded-3xl border border-[var(--color-snow)]/10 bg-[var(--color-snow)]/[0.03] backdrop-blur-xl p-6 shadow-xl shadow-black/20">
-          <div className="relative aspect-[4/5] w-full max-w-md mx-auto overflow-hidden rounded-2xl border border-[var(--color-electric-cyan)]/20 bg-[var(--color-deep-slate)]">
+          <div className="relative aspect-[5/6] w-full max-w-md mx-auto overflow-hidden rounded-2xl border border-[var(--color-electric-cyan)]/20 bg-[var(--color-deep-slate)]">
             <Image
-              src="/window.svg"
-              alt="Profile photo placeholder"
+              src="/window.png"
+              alt="Total code coverage & Technical debt assesment"
               fill
-              className="object-cover opacity-40"
+              className="object-cover opacity-85 hover:opacity-100 transition-opacity duration-700"
               sizes="(max-width: 1024px) 100vw, 400px"
               priority={false}
             />
-            <span className="absolute inset-0 flex items-center justify-center text-xs font-mono text-gray-500 pointer-events-none">
-              Profile image placeholder
-            </span>
+
           </div>
         </div>
 
@@ -90,12 +88,18 @@ export default function AboutSection() {
             About
           </h2>
           <p className="text-gray-400 leading-relaxed mb-4">
-            Background copy placeholder — engineering focus, stack, and what
-            you build day to day. Replace this with your story.
+            I&apos;m Alyasar Jabbarli, a Software &amp; Data Engineer based in Budapest, currently focusing on the intersection of scalable data infrastructure and trustworthy machine learning.
+          </p>
+          <p className="text-gray-400 leading-relaxed mb-4">
+            Most recently, I served as a Technical Project Lead at{" "}
+            <strong className="text-[var(--color-snow)] font-medium">Inci Group</strong>, where I spearheaded the development of modular, data-intensive web platforms. My work focused on building robust integration layers and ensuring end-to-end type safety—transforming complex data requirements into high-performance user experiences.
+          </p>
+          <p className="text-gray-400 leading-relaxed mb-4">
+            Currently, I am deep-diving into the world of Data Engineering and Security through my Master&apos;s at{" "}
+            <strong className="text-[var(--color-snow)] font-medium">ELTE</strong>. My research in Trustworthy ML allows me to stress-test LLM vulnerabilities using adversarial attacks (PGD/GCG), giving me a unique &ldquo;security-first&rdquo; lens on how data pipelines should be built and protected in 2026.
           </p>
           <p className="text-gray-500 leading-relaxed text-sm">
-            Second paragraph placeholder for education, interests, or current
-            role highlights.
+            I am currently seeking my next challenge in a role that demands a blend of Next.js/modern web architecture and scalable data engineering. If you&apos;re building resilient, data-aware systems and need an engineer who values honest metrics over buzzwords, let&apos;s talk.
           </p>
           <TerminalWidget />
         </div>
