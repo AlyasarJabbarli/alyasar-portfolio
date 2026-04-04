@@ -7,9 +7,6 @@
   --color-electric-cyan: #00F0FF;
   --color-deep-slate: #1A1A1B;
   --color-snow: #F5F5F7;
-
-  /* Custom Animations */
-  --animate-neural-pulse: pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
 html {
