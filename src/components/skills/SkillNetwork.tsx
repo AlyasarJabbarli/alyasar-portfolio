@@ -45,6 +45,8 @@ export default function SkillNetwork() {
     useEffect(() => {
         if (!containerRef.current || !svgRef.current) return;
 
+        const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
         const width = containerRef.current.clientWidth;
         const height = 500;
 
@@ -108,25 +110,29 @@ export default function SkillNetwork() {
                     }) as any
             );
 
-        // 4. The 60fps Animation Loop (Bypassing React State)
-        simulation.on("tick", () => {
-            // KEEP NODES INSIDE THE BOX
-            // We use Math.max and Math.min to prevent the x and y coordinates from going past the borders
+        const updateGraph = () => {
             nodesCopy.forEach((d: any) => {
                 d.x = Math.max(d.radius, Math.min(width - d.radius, d.x));
                 d.y = Math.max(d.radius, Math.min(height - d.radius, d.y));
             });
 
-            // Update SVG lines
             linkElements
                 .attr("x1", (d: any) => d.source.x)
                 .attr("y1", (d: any) => d.source.y)
                 .attr("x2", (d: any) => d.target.x)
                 .attr("y2", (d: any) => d.target.y);
 
-            // Update HTML Divs using hardware-accelerated CSS transforms
             nodeElements.style("transform", (d: any) => `translate(${d.x - d.radius}px, ${d.y - d.radius}px)`);
-        });
+        };
+
+        if (prefersReducedMotion) {
+            simulation.stop();
+            simulation.alphaDecay(1);
+            simulation.tick(300);
+            updateGraph();
+        }
+
+        simulation.on("tick", updateGraph);
 
         return () => {
             simulation.stop(); // Cleanup physics loop on unmount
