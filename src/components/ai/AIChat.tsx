@@ -42,14 +42,14 @@ export default function AIChat() {
   const isGenerating = status === 'submitted' || status === 'streaming';
 
   return (
-    <div className="fixed bottom-24 right-6 z-[100] font-sans">
+    <div className="fixed bottom-24 right-4 md:right-6 z-[100] font-sans">
       <AnimatePresence>
         {isOpen && (
           <motion.div
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            className="mb-4 w-[350px] md:w-[400px] h-[500px] bg-[var(--color-obsidian)] border border-[var(--color-snow)]/10 rounded-2xl shadow-2xl flex flex-col overflow-hidden backdrop-blur-xl"
+            className="mb-4 h-[70dvh] max-h-[500px] w-[calc(100vw-2rem)] max-w-[400px] bg-[var(--color-obsidian)] border border-[var(--color-snow)]/10 rounded-2xl shadow-2xl flex flex-col overflow-hidden backdrop-blur-xl"
           >
             <div className="p-4 border-b border-[var(--color-snow)]/10 bg-[var(--color-snow)]/5 flex justify-between items-center">
               <div className="flex items-center gap-2">
@@ -61,7 +61,12 @@ export default function AIChat() {
                   <p className="text-[10px] text-gray-400">Ask about his tech stack or experience</p>
                 </div>
               </div>
-              <button onClick={() => setIsOpen(false)} className="text-gray-400 hover:text-white transition-colors">
+              <button
+                type="button"
+                onClick={() => setIsOpen(false)}
+                className="min-h-11 min-w-11 inline-flex items-center justify-center text-gray-400 hover:text-white transition-colors"
+                aria-label="Close chat"
+              >
                 <X className="w-5 h-5" />
               </button>
             </div>
@@ -118,13 +123,15 @@ export default function AIChat() {
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   placeholder="Type a message..."
+                  aria-label="Message input"
                   disabled={isGenerating}
                   className="w-full bg-[var(--color-obsidian)] border border-[var(--color-snow)]/20 rounded-lg py-2 pl-4 pr-10 text-sm text-[var(--color-snow)] focus:outline-none focus:border-[var(--color-electric-cyan)] transition-colors disabled:opacity-50"
                 />
                 <button 
                   type="submit" 
                   disabled={isGenerating || !input.trim()}
-                  className="absolute right-2 top-1.5 text-gray-400 hover:text-[var(--color-electric-cyan)] transition-colors disabled:opacity-0"
+                  className="absolute right-1 top-1/2 -translate-y-1/2 min-h-11 min-w-11 inline-flex items-center justify-center text-gray-400 hover:text-[var(--color-electric-cyan)] transition-colors disabled:opacity-50"
+                  aria-label="Send message"
                 >
                   <Send className="w-5 h-5" />
                 </button>

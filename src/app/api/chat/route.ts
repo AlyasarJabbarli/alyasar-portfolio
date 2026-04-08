@@ -1,6 +1,7 @@
 import { google } from '@ai-sdk/google';
 import { streamText } from 'ai';
 import type { ModelMessage } from 'ai';
+import { z } from 'zod';
 
 export const maxDuration = 30;
 
@@ -15,8 +16,27 @@ interface IncomingMessage {
   content?: string;
 }
 
+const incomingMessageSchema = z.object({
+  role: z.enum(['user', 'assistant']),
+  parts: z
+    .array(
+      z.object({
+        type: z.string(),
+        text: z.string().optional(),
+      })
+    )
+    .optional(),
+  content: z.string().optional(),
+});
+
+const requestBodySchema = z.object({
+  messages: z.array(incomingMessageSchema).default([]),
+});
+
 export async function POST(req: Request) {
-  const { messages } = (await req.json()) as { messages: IncomingMessage[] };
+  const { messages } = requestBodySchema.parse(await req.json()) as {
+    messages: IncomingMessage[];
+  };
 
   const normalizedMessages: ModelMessage[] = messages.map((msg) => {
     const content =

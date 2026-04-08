@@ -67,3 +67,7 @@ html {
   );
   animation: skeleton-shimmer 1.5s ease-in-out infinite;
 }
+
+.cq {
+  container-type: inline-size;
+}

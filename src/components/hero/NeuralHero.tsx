@@ -36,7 +36,7 @@ export default function NeuralHero() {
         </motion.div>
 
         <motion.h1
-          className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter mb-6 text-[var(--color-snow)] pointer-events-auto"
+          className="text-[clamp(2.2rem,5vw+0.8rem,6rem)] font-bold tracking-tighter mb-6 text-[var(--color-snow)] pointer-events-auto"
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
@@ -45,7 +45,7 @@ export default function NeuralHero() {
         </motion.h1>
 
         <motion.p
-          className="max-w-2xl mx-auto text-gray-400 text-lg md:text-xl font-light leading-relaxed mb-10 pointer-events-auto"
+          className="max-w-2xl mx-auto text-gray-400 text-[clamp(1rem,0.6vw+0.9rem,1.25rem)] font-light leading-relaxed mb-10 pointer-events-auto"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}

@@ -16,6 +16,7 @@ function TerminalWidget() {
 
   useEffect(() => {
     let cancelled = false;
+    let timeoutId: number | undefined;
     const full = MOCK_COMMANDS[cmdIndex % MOCK_COMMANDS.length];
     let charIndex = 0;
     setDisplay("");
@@ -26,7 +27,7 @@ function TerminalWidget() {
       setDisplay(full.slice(0, charIndex));
       if (charIndex >= full.length) {
         window.clearInterval(intervalId);
-        window.setTimeout(() => {
+        timeoutId = window.setTimeout(() => {
           if (!cancelled) {
             setCmdIndex((i) => (i + 1) % MOCK_COMMANDS.length);
           }
@@ -37,6 +38,7 @@ function TerminalWidget() {
     return () => {
       cancelled = true;
       window.clearInterval(intervalId);
+      if (timeoutId) window.clearTimeout(timeoutId);
     };
   }, [cmdIndex]);
 
@@ -66,14 +68,14 @@ export default function AboutSection() {
   return (
     <section
       id="about"
-      className="w-full py-24 px-4 max-w-6xl mx-auto relative z-10 border-t border-[var(--color-snow)]/5"
+      className="w-full py-24 px-4 max-w-6xl mx-auto relative z-10 border-t border-[var(--color-snow)]/5 cq"
     >
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-start">
         <div className="rounded-3xl border border-[var(--color-snow)]/10 bg-[var(--color-snow)]/[0.03] backdrop-blur-xl p-6 shadow-xl shadow-black/20">
           <div className="relative aspect-[5/6] w-full max-w-md mx-auto overflow-hidden rounded-2xl border border-[var(--color-electric-cyan)]/20 bg-[var(--color-deep-slate)]">
             <Image
               src="/window.png"
-              alt="Total code coverage & Technical debt assesment"
+              alt="Alyasar Jabbarli profile image"
               fill
               className="object-cover opacity-85 hover:opacity-100 transition-opacity duration-700"
               sizes="(max-width: 1024px) 100vw, 400px"
@@ -84,7 +86,7 @@ export default function AboutSection() {
         </div>
 
         <div className="rounded-3xl border border-[var(--color-snow)]/10 bg-[var(--color-snow)]/[0.03] backdrop-blur-xl p-8 shadow-xl shadow-black/20">
-          <h2 className="text-3xl md:text-4xl font-bold text-[var(--color-snow)] mb-4 tracking-tight">
+          <h2 className="text-[clamp(1.75rem,1.1rem+2vw,2.5rem)] font-bold text-[var(--color-snow)] mb-4 tracking-tight">
             About
           </h2>
           <p className="text-gray-400 leading-relaxed mb-4">
